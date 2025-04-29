@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Paysolutions สมัครใช้บริการของเรา</title>
+    <meta name="description" content="Paysolutions สมัครใช้บริการของเรา">
+    <meta name="keywords" content="Paysolutions สมัครใช้บริการของเรา">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="https://www.paysolutions.asia/assets/images/favicon-payso.png" type="image/gif"
+        sizes="16x16">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="text-center pt-20">
+        <img src="https://cdn.paysolutions.io/logo-paysolutions.png" alt="logo" class="logo mx-auto w-36 mb-2">
+        <h5 class="text-4xl font-[300] text-[#0447f5] mb-2">สมัครใช้บริการระบบชำระเงินออนไลน์</h5>
+        <p class=" text-sm font-[200] mb-4">โปรดกรอกรายละเอียดเพื่อเป็นข้อมูลติดต่อให้ลูกค้าที่ซื้อสินค้า/บริการ
+            (แก้ไขภายหลังได้)
+        </p>
+    </header>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mx-auto lg:max-w-[80%] px-4">
+        <section class="bg-[#F6F6F6] py-10 px-12 rounded-xl">
+            <form action="http://127.0.0.1:4215/api/new-register" name="form_register" method="post"
+                style="text-align: left;">
+
+                <label for="name" class="block text-gray-700 text-sm mb-1 ">ชื่อบริษัท/ชื่อ - นามสกุล <span
+                        class="text-xs text-[#0447f5] font-[200]">(English
+                        only)</span></label>
+                <input type="text" name="name" id="name"
+                    class=" appearance-none border rounded w-full mb-4 text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                    placeholder="Company/ Person Name">
+
+                <label for="mobile" class="block text-gray-700 text-sm mb-1 ">เบอร์โทรศัพท์</label>
+                <input type="text" name="mobile" id="mobile"
+                    class=" appearance-none border rounded w-full mb-4 text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                    placeholder="Mobile Phone Number">
+
+                <label for="email" class="block text-gray-700 text-sm mb-1 ">อีเมล</label>
+                <input type="email" name="email" id="email" placeholder="e-mail"
+                    class=" appearance-none border rounded w-full mb-4 text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline">
+
+                <label for="category" class="block text-gray-700 text-sm mb-1 ">ประเภทธุรกิจ</label>
+                <select onchange="getsubcat(this)" name="category" id="category"
+                    class=" appearance-none border rounded w-full mb-4 text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                    placeholder="Type of Business">
+                    <option value="">กรุณาเลือกประเภทธุรกิจ</option>
+                    {{ $length := len .Catagory }}
+                    {{ if eq $length 0 }}{{ else }}
+                    {{range $item := .Catagory }}
+                    <option value="{{ $item.Value }}">{{ $item.NameTH }}</option>
+                    {{ end }}
+                    {{ end }}
+                </select>
+
+                <label for="subcategory" class="block text-gray-700 text-sm mb-1 ">ประเภทธุรกิจย่อย</label>
+                <select name="subcategory" id="subcategory"
+                    class=" appearance-none border rounded w-full mb-4 text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline">
+                    <option value="">กรุณาเลือกประเภทธุรกิจย่อย</option>
+                </select>
+
+                <label for="website" class="block text-gray-700 text-sm mb-1 ">เว็บไซต์/โซเชียลมีเดีย
+                    <span class="text-xs text-[#0447f5] font-[200]">(Website, FB, IG, Line)</span></label>
+                <input type="text" name="website" id="website"
+                    class=" appearance-none border rounded w-full mb-4 text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                    placeholder="Website URL or Social Media Account">
+
+                <label for="company" class="block text-gray-700 text-sm mb-1 ">ชื่อลิงก์ชำระเงินที่่ต้องการ
+                    <span class="text-xs text-[#0447f5] font-[200]">www.pay.sn/yourname (English only)</span></label>
+                <input onchange="checkcompnay(this)" type="text"
+                    class=" appearance-none border rounded w-full mb-4 text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                    id="company" name="company" placeholder="Merchant name">
+
+                <input style="display: none;" type="checkbox" class="uniform" id="check" name="check" value='1'
+                    disabled="true">
+                <input style="display: none;" type="text" class="form-control" id="lang" name="lang" value='TH'>
+                <input style="display: none;" type="text" class="form-control" id="level" name="level" value='1'>
+
+        </section>
+        <section class="bg-[#F6F6F6] sm:py-10 px-12 py-3 px-3 rounded-xl">
+            <p class="text-sm font-[200] text-center mb-4">ด้วยบริการที่หลากหลาย
+                รองรับทุกความต้องการเพื่อสนับสนุนให้ทุกธุรกิจเติบโต</p>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-1 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-credit@2x.webp" alt="card">
+                <p class="text-sm font-[200] ">ระบบชำระบัตรเครดิตและบัตรเดบิต (Credit, Debit Card)</p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-4 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-Installment@2x.webp"
+                    alt="card">
+                <p class="text-sm font-[200] ">ระบบผ่อนชำระ (Installment)</p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-4 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-promptPay@2x.webp"
+                    alt="card">
+                <p class="text-sm font-[200] ">พร้อมเพย์ (PromptPay)</p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-4 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-internetbanking@2x.webp"
+                    alt="card">
+                <p class="text-sm font-[200] ">อินเตอร์เน็ต / โมบายล์แบงกิ้ง (Internet Banking)</p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-4 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-true@2x.webp" alt="card">
+                <p class="text-sm font-[200] ">ทรูมันนี่วอลเล็ท (True Money Wallet)</p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-4 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-alipay@2x.webp" alt="card">
+                <p class="text-sm font-[200] ">อาลีเพย์ (AliPay)</p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-4 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-wechat@2x.webp" alt="card">
+                <p class="text-sm font-[200] ">วีแชทเพย์ (WeChat Pay)</p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-4 gap-4 items-center mb-1">
+                <img class="max-sm:w-16 max-lg:w-10 w-16" src="https://cdn.paysolutions.io/icon-bill.webp" alt="card">
+                <p class="text-sm font-[200] ">จ่ายบิล ณ จุดรับชำระ (Bill Payment)</p>
+            </div>
+
+            <div class="mb-1 flex gap-2">
+                <input type="checkbox" name="accecpt-condition" id="accecpt-condition">
+                <div>
+                    <label for="accecpt-condition" class="font-[200] text-sm">ข้าพเจ้ายืนยันว่าได้อ่านและยอมรับ
+                        <a href="#" class="text-[blue] underline">ข้อตกลงและเงื่อนไขการใช้บริการ</a></label>
+                </div>
+            </div>
+            <div class="mb-1 flex gap-2">
+                <input type="checkbox" name="accecpt-consent" id="accecpt-consent">
+                <div>
+                    <label for="accecpt-consent" class="font-[200] text-sm">ข้าพเจ้ายืนยันว่าได้อ่าน <a href="#"
+                            class="text-[blue] underline">นโยบายข้อมูลส่วนบุคค</a>
+                        เเละยินยอมให้เพย์ โซลูชั่น เก็บรวบรวม
+                        ใช้ข้อมูลส่วนบุคคลเพื่อการสมัครใช้บริการระบบรับชำระเงินออนไลน์
+                    </label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="accecpt-news" class="font-[200] text-sm relation">
+                    <input type="checkbox" name="accecpt-news" id="accecpt-news" class="float">ข้าพเจ้ายืนยันว่าได้อ่าน
+                    <a href="#" class="text-[blue] underline">นโยบายข้อมูลส่วนบุคคล</a>
+                    และยินยอมให้เพย์ โซลูชั่น เก็บรวบรวม
+                    ใช้ข้อมูลส่วนบุคคลเพื่อแจ้งข่าวสารและประกาศที่เกี่ยวกับบริการระบบรับชำระเงินออนไลน์
+                </label>
+            </div>
+
+            <input type="submit" value="สมัครใช้บริการ"
+                class="bg-[#bd362f] text-[white] text-2xl font-[200] w-full cursor-pointer py-2 hover:opacity-90">
+            </form>
+        </section>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    function getsubcat(selectObject) {
+
+        var idsubcate = document.querySelectorAll("[id='idsubcate']");
+        if (idsubcate.length != 0) {
+            for (var i = 0; i < idsubcate.length; i++) {
+                idsubcate[i].parentNode.removeChild(idsubcate[i]);
+            }
+        }
+
+        var value = selectObject.value;
+        {{.SubCatagory }}.forEach(element => {
+            let mainvalue = element.mainvalue.toString();
+            if (value === mainvalue) {
+                let subcategory =
+                    `<option name='idsubcate' id='idsubcate' value="${element.value}">${element.nameTH}</option>`;
+                $('#subcategory').append(subcategory);
+            }
+        });
+    }
+
+    function checkcompnay(selectObject) {
+        var value = selectObject.value;
+        if (value.length > 0) {
+            var settings = {
+                "url": "http://127.0.0.1:2024/api/merchant/checkmerchantcompany/" + value,
+                "method": "GET",
+                "data": {}
+            };
+            $.ajax(settings).done(function (response) {
+                if (response['Status'] == false) {
+                    alert("** มีผู้ใช้แล้ว ไม่สามารถใช้ซ้ำได้ **");
+                }
+            });
+        }
+    }
+</script>
+
+<style>
+    body {
+        font-family: 'prompt';
+    }
+</style>
+
+</html>

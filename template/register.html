@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Paysolutions สมัครใช้บริการของเรา</title>
+    <meta name="description" content="Paysolutions สมัครใช้บริการของเรา">
+    <meta name="keywords" content="Paysolutions สมัครใช้บริการของเรา">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="https://www.paysolutions.asia/assets/images/favicon-payso.png" type="image/gif"
+        sizes="16x16">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="relative">
+    <header class="text-center pt-16">
+        <img src="https://cdn.paysolutions.io/logo-paysolutions.png" alt="logo" class="logo mx-auto w-24 mb-2">
+        <h5 class="text-4xl font-[300] text-[#0447f5] mb-2">สมัครใช้บริการระบบชำระเงินออนไลน์</h5>
+        <p class=" text-sm font-[200] mb-4">โปรดกรอกรายละเอียดเพื่อเป็นข้อมูลติดต่อให้ลูกค้าที่ซื้อสินค้า/บริการ
+            (แก้ไขภายหลังได้)
+        </p>
+    </header>
+    <form action="/view-register/new-register" name="form_register" method="post" class="form" id="form_register"
+        style="text-align: left;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mx-auto lg:max-w-[80%] px-4">
+            <section class="bg-[#F6F6F6] py-10 px-12 sm:mb-20 rounded-xl">
+
+                <div>
+                    <label for="name" class="block text-gray-700 text-sm mb-1">ชื่อบริษัท/ชื่อ - นามสกุล <span
+                            class="text-xs text-[#0447f5] font-[200]">(English
+                            only)</span></label>
+                    <input type="text" name="name" id="name"
+                        class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                        placeholder="Company/ Person Name" maxlength="100">
+                    <span class="error-message text-xs text-[red]"></span>
+                </div>
+
+                <div>
+                    <label for="mobile" class="block text-gray-700 text-sm mb-1 mt-4">เบอร์โทรศัพท์</label>
+                    <input type="text" name="mobile" id="mobile"
+                        class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                        placeholder="Mobile Phone Number" maxlength="11">
+                    <span class="error-message text-xs text-[red]"></span>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-gray-700 text-sm mb-1 mt-4">อีเมล</label>
+                    <input type="email" name="email" id="email" placeholder="e-mail"
+                        class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"  maxlength="100">
+                    <span class="error-message text-xs text-[red]"></span>
+                </div>
+
+                <div>
+                    <label for="category" class="block text-gray-700 text-sm mb-1 mt-4">หมวดหมู่ธุรกิจ</label>
+                    <input type="hidden" id="categorynameTH" name="categorynameTH" value="">
+                    <input type="hidden" id="categorynameEN" name="categorynameEN" value="">
+                    <select onchange="getsubcat(this)" name="category" id="category"
+                        class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                        placeholder="Type of Business">
+                        <option value="">กรุณาเลือกหมวดหมู่ธุรกิจ</option>
+                        {{ $length := len .Catagory }}
+                        {{ if eq $length 0 }}{{ else }}
+                        {{range $item := .Catagory }}
+                        <option data-val-TH="{{ $item.NameTH }}" data-val-EN="{{ $item.NameEN }}"
+                            value="{{ $item.Value }}">{{ $item.NameTH }}</option>
+                        {{ end }}
+                        {{ end }}
+                    </select>
+                    <span class="error-message text-xs text-[red]"></span>
+                </div>
+
+                <div>
+                    <label for="subcategory" class="block text-gray-700 text-sm mb-1 mt-4">หมวดหมู่ธุรกิจย่อย</label>
+                    <select name="subcategory" id="subcategory"
+                        class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline">
+                        <option value="">กรุณาเลือกหมวดหมู่ธุรกิจย่อย</option>
+                    </select>
+                    <span class="error-message text-xs text-[red]"></span>
+                </div>
+
+                <div>
+                    <label for="website" class="block text-gray-700 text-sm mb-1 mt-4">เว็บไซต์/โซเชียลมีเดีย
+                        <span class="text-xs text-[#0447f5] font-[200]">(Website, FB, IG, Line)</span></label>
+                    <input type="text" name="website" id="website"
+                        class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                        placeholder="Website URL or Social Media Account">
+                    <span class="error-message text-xs text-[red]"></span>
+                </div>
+                <div>
+                    <label for="leadno" class="block text-gray-700 text-sm mb-1 mt-4">Lead No</label>
+                    <input type="text" name="leadno" id="leadno"
+                        class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                        placeholder="Lead No" maxlength="50">
+                    <span class="error-message text-xs text-[red]"></span>
+                </div>
+
+                <div>
+                    <label for="company" class="block text-gray-700 text-sm mb-1 mt-4">ชื่อลิงก์ชำระเงินที่ต้องการ
+                        <span class="text-xs text-[#0447f5] font-[200]">English
+                            only</span></label>
+                    <div class="flex flex-wrap items-center">
+                        <p
+                            class=" appearance-none border-t border-l border-b rounded-l-[4px] text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5]">
+                            https://www.pay.sn/
+                        </p>
+                        <input type="text"
+                            class="flex-1 appearance-none border rounded-r-[4px] w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                            id="company" name="company" placeholder="Merchant name">
+
+                        <p class="error-message w-full text-xs text-[red]"></p>
+                    </div>
+                </div>
+
+                <input style="display: none;" type="checkbox" class="uniform" id="check" name="check" value='1'
+                    disabled="true">
+                <input style="display: none;" type="text" class="form-control" id="lang" name="lang" value='TH'>
+                <input style="display: none;" type="text" class="form-control" id="level" name="level" value='1'>
+
+            </section>
+            <section class="bg-[#F6F6F6] sm:py-10 px-12 py-3 px-3 mb-20 rounded-xl">
+                <p class="text-sm font-[200] text-center mb-4">ด้วยบริการที่หลากหลาย
+                    รองรับทุกความต้องการเพื่อสนับสนุนให้ทุกธุรกิจเติบโต</p>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16" src="https://cdn.paysolutions.io/icon-credit@2x.webp"
+                        alt="card">
+                    <p class="text-sm font-[200] ">ระบบชำระบัตรเครดิตและบัตรเดบิต (Credit, Debit Card)</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16" src="https://cdn.paysolutions.io/icon-Installment@2x.webp"
+                        alt="installment">
+                    <p class="text-sm font-[200] ">ระบบผ่อนชำระ (Installment)</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16" src="https://cdn.paysolutions.io/icon-promptPay@2x.webp"
+                        alt="card">
+                    <p class="text-sm font-[200] ">พร้อมเพย์ (PromptPay)</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16"
+                        src="https://cdn.paysolutions.io/icon-internetbanking@2x.webp" alt="card">
+                    <p class="text-sm font-[200] ">อินเตอร์เน็ต / โมบายล์แบงกิ้ง (Internet Banking)</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16" src="https://cdn.paysolutions.io/icon-true@2x.webp"
+                        alt="card">
+                    <p class="text-sm font-[200] ">ทรูมันนี่วอลเล็ท (True Money Wallet)</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16" src="https://cdn.paysolutions.io/icon-alipay@2x.webp"
+                        alt="card">
+                    <p class="text-sm font-[200] ">อาลีเพย์ (AliPay)</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16" src="https://cdn.paysolutions.io/icon-wechat@2x.webp"
+                        alt="card">
+                    <p class="text-sm font-[200] ">วีแชทเพย์ (WeChat Pay)</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-8 gap-1 items-center mb-4">
+                    <img class="max-sm:w-16 max-xl:w-10 w-16" src="https://cdn.paysolutions.io/icon-bill.webp"
+                        alt="card">
+                    <p class="text-sm font-[200] ">จ่ายบิล ณ จุดรับชำระ (Bill Payment)</p>
+                </div>
+
+                <div class="grid-cols-2 mb-3 mt-8">
+                    <input type="checkbox" name="accecpt-condition" id="accecpt-condition"
+                        onchange="handleToggleCheckbox1()">
+                    <label for="accecpt-condition" class="font-[200] text-sm">ข้าพเจ้ายืนยันว่าได้อ่านและยอมรับ
+                        <a href="https://paysolutions.asia/terms-conditions.html" id="openDialogLink"
+                            class="text-[blue] underline">ข้อตกลงและเงื่อนไขการใช้บริการ</a></label>
+                </div>
+                <div class="grid-cols-2 mb-3">
+                    <input type="checkbox" name="accecpt-consent" id="accecpt-consent" class="border border-pink-500">
+                    <label for="accecpt-consent" class="font-[200] text-sm">ข้าพเจ้ายืนยันว่าได้อ่าน <a href="https://www.paysolutions.asia/privacy-policy.html" target="_blank"
+                            class="text-[blue] underline">นโยบายข้อมูลส่วนบุคค</a>
+                        เเละยินยอมให้เพย์ โซลูชั่น เก็บรวบรวม
+                        ใช้ข้อมูลส่วนบุคคลเพื่อการสมัครใช้บริการระบบรับชำระเงินออนไลน์
+                    </label>
+                </div>
+                <div class="grid-cols-2 mb-3">
+                    <input type="checkbox" name="accecpt-news" id="accecpt-news">
+                    <label for="accecpt-news" class="font-[200] text-sm">ข้าพเจ้ายืนยันว่าได้อ่าน
+                        <a href="https://paysolutions.asia/privacy-policy.html" target="_blank" class="text-[blue] underline">นโยบายข้อมูลส่วนบุคคล</a>
+                        และยินยอมให้เพย์ โซลูชั่น เก็บรวบรวม
+                        ใช้ข้อมูลส่วนบุคคลเพื่อแจ้งข่าวสารและประกาศที่เกี่ยวกับบริการระบบรับชำระเงินออนไลน์
+                    </label>
+                </div>
+
+                <div
+                    class="flex mb-4 gap-4 flex-col  bg-[white] p-4 border border-radius-md text-center xl:w-[50%] w-[100%]">
+
+                    <div id="captcha"></div>
+                    <div class="flex  items-start gap-2">
+                        <div class="grow">
+                            <input type="text" id="captchaInput" placeholder="Enter CAPTCHA"
+                                class=" appearance-none border rounded w-full text-xs py-2 px-3 text-gray-700 leading-tight focus:outline-[#0447f5] focus:shadow-outline"
+                                onpaste="return false;" oncopy="return false;">
+                            <p class="error-message text-xs text-[red] block"></span>
+                        </div>
+                        <button type="button" onclick="validator.generateCaptcha()"
+                            class="text-[10px]  text-[white] bg-[#0447f5] p-2 rounded">Refresh
+                            CAPTCHA</button>
+                    </div>
+                </div>
+
+                <input type="submit" value="สมัครใช้บริการ"
+                    class="bg-[#bd362f] text-[white] text-2xl font-[200] w-full cursor-pointer py-2 hover:opacity-90 btn">
+            </section>
+        </div>
+    </form>
+
+    <dialog
+        class="left-0 top-0 bg-black bg-opacity-50 w-screen py-8 flex justify-center items-center hidden transition-opacity duration-500"
+        id="myModal">
+        <div class="bg-white rounded shadow-md sm:w-[55%] w-[90%] flex">
+            <div class="">
+
+                <!-- Modal Header -->
+                <div class="flex justify-between p-4 bg-[#F9F9F9]">
+                    <p class="text-md font-[200]">เงื่อนไขการให้บริการ</p>
+                    <button type="button" class="close" data-dismiss="modal" id="closeDialogButton">&times;</button>
+                </div>
+                <hr class="mb-4">
+
+                <!-- Modal body -->
+                <div class="modal-body px-4">
+                    <p class="text-sm font-[300] mb-3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ข้อตกลงต่อไปนี้ มีผลบังคับใช้ทันทีที่ลูกค้าเริ่มต้นใช้บริการกับ
+                        เพย์ โซลูชั่น</p>
+                    <p class="text-sm font-[200] mb-3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ขอให้ลูกค้าทุกท่านโปรดทำความเข้าใจและปฎิบัติตาม
+                        ระบบชำระเงินผ่านบัตรเครดิตออนไลน์ เป็นบริการระบบชำระเงินด้วยบัตรเครดิตผ่านเครือข่ายอินเตอร์เน็ต
+                        ดังนั้นบริการระบบชำระเงินออนไลน์ ก็คือบริการระบบชำระเงินค่าสินค้าหรือบริการด้วยการตัดบัตรเครดิต
+                        เพื่อใช้การซื้อขายสินค้าหรือบริการบนอินเตอร์เน็ต
+                        โดยผู้ใช้บริการจะต้องเป็นบุคคลหรือเจ้าของเว็บไซต์ที่ขายสินค้าหรือบริการ บนเครือข่ายอินเตอร์เน็ต
+                        และต้องการใช้บริการระบบชำระเงินผ่านบัตรเครดิตเพื่อชำระค่าสินค้าหรือ บริการของตน นอกจากนี้
+                        บริการระบบชำระเงินผ่านบัตรเครดิต จะใช้งานผ่านระบบจัดการที่เราจัดทำขึ้นเพื่อใช้ในการจัดการดูแล
+                        การชำระเงินค่าสินค้า หรือบริการของผู้ใช้บริการผ่านบัตรเครดิต เช่น
+                        ระบบการประมวลผลการสั่งซื้อสินค้าหรือบริการ, ระบบการจัดการ, ระบบการกรอกรายละเอียดบัตรเครดิต,
+                        ระบบสรุปยอดการชำระเงินค่าสินค้าหรือบริการ และ
+                        ระบบการแจ้งผลการชำระเงินค่าสินค้าหรือบริการผ่านบัตรเครดิต
+                        เพื่อให้การใช้งานบริการระบบชำระเงินผ่านบัตรเครดิต เป็นไปด้วยความสะดวก รวดเร็ว และปลอดภัย</p>
+                    <p class="text-sm text-red-500  mb-3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;คุณสมบัติของร้านค้า</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. ต้องมีเว็บไซต์และโดเมนเนมที่ยังเปิดใช้งานได้</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. ต้องไม่ดำเนินธุรกิจที่ผิดกฎหมายหรือขัดต่อศีลธรรม</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- การพนัน <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- สื่อลามก <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- เหล้า เครื่องดื่มที่มีแอลกอฮอล์ทุกชนิด <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- บุหรี่และสารเสพติด ยาเสพติด <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- สินค้าละเมิดลิขสิทธิ์ <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ยา (ผิดกฎหมายบางประเทศ) <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- เครื่องสำอางค์ผิดกฎหมาย <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- เกมส์ออนไลน์ <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- สินค้าลอกเลียนแบบทุกชนิด
+                    </p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. ธุรกิจจำหน่ายอาหารเสริม เครื่องสำอาง ผลิตภัณฑ์เกี่ยวกับสุขภาพ
+                        ทีมงานจะตรวจสอบเป็นพิเศษและอนุมัติในเฉพาะรายที่สินค้าได้รับการรับรองจาก อย.
+                        หรือหน่วยงานที่ถูกต้องตามกฎหมายเท่านั้น</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. ร้านค้าที่มีลักษณะเป็น Merchant Aggregator คือการนำระบบของ เพย์
+                        โซลูชั่นไปเชื่อมต่อกับร้านค้าย่อยหรือเว็บไซต์อื่นๆที่ไม่ได้ ลงทะเบียนไว้</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ร้านค้าให้คำรับรองว่า สินค้าหรือบริการของร้านค้า
+                        จะต้องเป็นสิ่งที่ถูกต้องตามกฎหมายและ ไม่ผิดต่อศีลธรรมอันดีงามของประชาชน หากเพย์ โซลูชั่น
+                        ตรวจสอบพบภายหลังว่าร้านค้านำระบบชำระเงินผ่านบัตรเครดิตนี้
+                        ไปใช้ชำระเงินค่าสินค้าหรือบริการที่ผิดกฎหมาย หรือผิดต่อศีลธรรม เพย์ โซลูชั่น
+                        มีสิทธิที่จะยึดเงินทั้งหมดของร้านค้า พร้อมทั้งสามารถยกเลิกการให้บริการทั้งหมดได้ทันที</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>การยอมรับข้อตกลงและระเบียบการใช้งาน</b></p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. อัตราค่าธรรมเนียม</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ค่าบริการใช้งานระบบ:
+                        ราคาขึ้นอยู่กับระบบที่เลือกใช้งาน
+                    </p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. ข้อตกลงการโอนยอดรายได้</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพย์ โซลูชั่น จะสรุปยอดรายได้ของร้านค้าในแต่ละเดือน
+                        และโอนยอดรายได้ดังกล่าวหลังจากหักค่าธรรมเนียมแล้วให้กับร้านค้าทุกๆวันพุธ ของสัปดาห์ถัดไป
+                        โดยนำฝากเข้าบัญชีธนาคารที่ร้านค้าแจ้งมา แต่หากทุกๆวันพุธ
+                        ของสัปดาห์ถัดไปตรงกับวันหยุดทำการของเพย์ โซลูชั่น หรือธนาคาร
+                        ยอดรายได้จะถูกนำฝากเข้าบัญชีของร้านค้าในวันทำการถัดไป</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ค่าธรรมเนียมคืนเงิน 300 บาท/รายการ
+                        (หากรายการชำระเงินนั้นเกิน 7 วัน)
+                    </p>
+                    <p class="text-sm font-[300] text-red-500 mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* ค่าธรรมเนียมการโอนเงิน 12 - 20 บาท (ยอดโอนไม่เกิน
+                        2,000,000 บาท/ครั้ง)
+                    </p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;การเพิ่มความถี่ในการรับเงินรายได้</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพย์ โซลูชั่น ได้มีนโยบายเพิ่มเติมเกี่ยวกับเรื่อง
+                        การรับเงินรายได้ร้านค้า กล่าวคือ ร้านค้าที่เข้าเงื่อนไขดังต่อไปนี้
+                        สามารถแจ้งขอปรับการรับเงินรายได้เป็นราย 15 วันหรือ รายสัปดาห์</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. ร้านค้าที่ใช้บริการเพย์ โซลูชั่น มากกว่า 6
+                        เดือนขึ้นไป <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. ไม่มีปัญหาเกี่ยวกับการปฎิเสธการชำระเงินจากลูกค้า
+                        (Charge Back) <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. หากมีรายได้รวมมากกว่า 100,000 บาท/เดือน
+                        สามารถขอปรับการรับเงินเป็นราย 15 วันได้ <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. หากมีรายได้รวมมากกว่า 500,000 บาท/เดือน
+                        สามารถขอปรับการรับเงินเป็นรายสัปดาห์ได้ <br>
+                    </p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. อัตราการแลกเปลี่ยนสกุลเงิน</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ในกรณีที่ราคาขายของสินค้าหรือบริการเป็นสกุลเงินต่างประเทศ
+                        ร้านค้าตกลงและรับทราบว่า เพย์ โซลูชั่น จะคิดคำนวณยอดรายได้โดยใช้อัตราแลกเปลี่ยนตามอัตราซื้อ
+                        (Buying Rate) แต่ละวันของธนาคารกสิกรไทย ณ วันที่เกิดการชำระเงินผ่านบัตรเครดิต
+                        ทั้งนี้อัตราการแลกเปลี่ยนในแต่ละวันนั้นไม่คงที่ ร้านค้าจึงต้องทำความเข้าใจกับลูกค้าด้วยเช่นกัน
+                    </p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. กรณียึดหน่วง</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ร้านค้าตกลงที่จะตรวจสอบการทำรายการของลูกค้าอย่างสม่ำเสมอ
+                        และชะลอการส่งสินค้าไปยังลูกค้าก่อนเป็นระยะเวลา 48 ชั่วโมงทุกครั้งหลังจากที่รายการสั่งซื้ออนุมัติ
+                        เพื่อป้องกันรายการชำระเงินที่มีปัญหา ซึ่งในกรณีที่รายการใดถูก เพย์ โซลูชั่น
+                        ตรวจพบว่ามีการชำระเงินที่ผิดปกติ หรือมียอดเงินสูง สถานะของการทำรายการนั้นอาจเปลี่ยนแปลงจาก
+                        Complete เป็น Hold ได้ ภายใน 48 ชั่วโมง ทั้งนี้หากมีการเปลี่ยนสถานะรายการเกิดขึ้น
+                        ร้านค้ายินยอมที่จะปฎิบัติตามขั้นตอนที่ทาง เพย์ โซลูชั่น แจ้งให้ทราบ</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. กรณีการปฏิเสธการชำระเงิน</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ร้านค้ายอมรับการปฏิเสธการชำระเงินจากผู้ถือบัตร (Charge Back)
+                        หากภายหลังธนาคารหรือบริษัทผู้ให้บริการบัตรเครดิตตรวจพบข้อสงสัย หรือความผิดปกติ หรือการทุจริต
+                        ฉ้อโกง หรือไม่ว่าด้วยกรณีใดก็ตาม ร้านค้ายินยอมให้ เพย์ โซลูชั่น ทำการหักยอดเงินดังกล่าว
+                        จากรายได้ร้านค้า หรือโอนยอดเงินดังกล่าวกลับมายัง เพย์ โซลูชั่น ทั้งนี้ความเสี่ยง
+                        และความเสียหายที่เกิดขึ้นนั้น ร้านค้าจะเป็นผู้รับผิดชอบทั้งหมด</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. เพื่อให้เป็นไปตามกฎกระทรวงและกฎหมายการฟอกเงิน</p>
+                    <p class="text-sm font-[200] mb-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพย์ โซลูชั่น จึงได้กําหนดแบบฟอร์มสําหรับธุรกรรมที่มียอดชําระเงิน
+                        50,000 บาทขึ้นไป เพื่อให้ลูกค้าทําการกรอกและแสดงตน ตามกระบวนการที่เรียกว่า CDD (Customer Due
+                        Diligence) และแนบหลักฐาน เช่น บัตรประชาชน หรือ พาสปอร์ต
+                        เพื่อทําการสืบทราบข้อมูลเพิ่มเติมเกี่ยวกับผู้ทําธุรกรรมรายนั้นๆ และขอสงวนสิทธิ์
+                        ในการแจ้งให้ทางสํานักงานป้องกันและปราบปรามการฟอกเงินทราบเพื่อดําเนินการ ตรวจสอบในลําดับต่อไป
+                    </p>
+                    <p class="text-sm font-[300] mb-8">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* เพย์ โซลูชั่น
+                        ขอสงวนสิทธิ์ที่จะเปลี่ยนแปลงข้อตกลงข้างต้นตามความเหมาะสม โดยจะแจ้งให้ร้านค้าทราบเป็นคราวๆไป</p>
+                </div>
+                <hr>
+
+                <!-- Modal footer -->
+                <div class="flex justify-between p-8 bg-[#F9F9F9]">
+                    <label class="text-sm font-[200]" for="policy2"><input onchange="handleToggleCheckbox2()"
+                            type="checkbox" id="policy2" name="policy2">
+                        ข้าพเจ้าขอยืนยันว่าได้อ่านและยอมรับข้อตกลงและเงื่อนไขการใช้บริการข้างต้นแล้ว</label>
+                    <button type="button"
+                        class="bg-[#bd362f] text-[white] text-sm font-[200] w-16 cursor-pointer py-1 hover:opacity-90 btn"
+                        id="closeDialogButton2">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </dialog>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    function getsubcat(selectObject) {
+
+        var idsubcate = document.querySelectorAll("[id='idsubcate']");
+        if (idsubcate.length != 0) {
+            for (var i = 0; i < idsubcate.length; i++) {
+                idsubcate[i].parentNode.removeChild(idsubcate[i]);
+            }
+        }
+
+        var value = selectObject.value;
+        var datavalueTH = selectObject.options[selectObject.selectedIndex].getAttribute("data-val-TH");
+        var datavalueEN = selectObject.options[selectObject.selectedIndex].getAttribute("data-val-EN");
+        {{.SubCatagory}}.forEach(element => {
+            let mainvalue = element.mainvalue.toString();
+            if (value === mainvalue) {
+                let subcategory = `<option name='idsubcate' id='idsubcate' value="${element.value}">${element.nameTH}</option>`;
+                $('#subcategory').append(subcategory);
+                $("#categorynameTH").val(datavalueTH);
+                $("#categorynameEN").val(datavalueEN);
+            }
+        });
+    }
+
+    class FormValidator {
+        constructor(form, fields) {
+            this.form = form
+            this.fields = fields
+        }
+
+        initialize() {
+            this.validateOnEntry()
+            this.validateOnSubmit()
+            this.generateCaptcha()
+        }
+
+        validateOnSubmit() {
+            let self = this;
+
+            this.form.addEventListener('submit', async e => {
+                e.preventDefault();
+                let isValid = true;
+                const validationPromises = self.fields.map(async field => {
+                    const input = document.querySelector(`#${field}`);
+                    if (input) {
+                        const fieldIsValid = await self.validateFields(input);
+                        if (!fieldIsValid) {
+                            isValid = false;
+                        }
+                    }
+                });
+
+                await Promise.all(validationPromises);
+
+                if (!self.validateCaptcha()) {
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    this.form.submit();
+                } else {
+                    console.log('Form submission blocked: Some fields are invalid');
+                }
+            });
+        }
+
+        validateOnEntry() {
+            let self = this
+
+            this.fields.forEach(field => {
+                const input = document.querySelector(`#${field}`)
+
+                console.log(input)
+                if (!!input) {
+                    input.addEventListener('input', event => {
+                        self.validateFields(input)
+                    })
+
+                }
+            })
+        }
+
+        validateFields(field) {
+
+            return new Promise((resolve) => {
+
+                let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                let nameRegex = /^[A-Za-z0-9./:\s]+$/;
+                let websiteRegex = /^[A-Za-z0-9./:_-\s]+$/;
+                let companyRegex = /^[A-Za-z0-9]+$/;
+                let mobileRegex = /^[0-9]*$/;
+
+                //check for a valid name
+                if (field.id === "name") {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณากรอกข้อมูล`, "error")
+                        resolve(false)
+                    } else if (!nameRegex.test(field.value)) {
+                        this.setStatus(field, "ใส่ได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น", "error")
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success")
+                        resolve(true)
+                    }
+                }
+
+                if (field.id === "website") {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณากรอกข้อมูล`, "error")
+                        resolve(false)
+                    } else if (!websiteRegex.test(field.value)) {
+                        this.setStatus(field, "ใส่ได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น", "error")
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success")
+                        resolve(true)
+                    }
+                }
+
+                if (field.id == "company") {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณากรอกข้อมูล`, "error");
+                        resolve(false);
+                    } else if (!companyRegex.test(field.value)) {
+                        this.setStatus(field, "ใส่ได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น", "error");
+                        resolve(false);
+                    } else if (field.value.length > 0) {
+                        var settings = {
+                            "url": "https://apis.paysolutions.asia/payso/external/merchant/checktempmerchantcompany/" + field.value,
+                            "method": "GET",
+                            "headers": {
+                                "apikey": "JpywR23@W8"
+                            },
+                        };
+                        $.ajax(settings).done((response) => {
+                            if (response['Status'] == false) {
+                                this.setStatus(field, `มีผู้ใช้แล้ว ไม่สามารถใช้ซ้ำได้`, "error");
+                            } else {
+                                this.setStatus(field, null, "success");
+                                resolve(true);
+                            }
+                        });
+                    } else {
+                        this.setStatus(field, null, "success");
+                        resolve(true);
+                    }
+                }
+
+                //check for a valid mobile
+                if (field.id === "mobile") {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณากรอกข้อมูล`, "error")
+                        resolve(false)
+                    } else if (!mobileRegex.test(field.value)) {
+                        this.setStatus(field, "ใส่ได้เฉพาะตัวเลขเท่านั้น", "error")
+                        resolve(false)
+                    } else if (field.value.length < 9 || field.value.length > 11) {
+                        this.setStatus(field, "กรุณาใส่หมายเลขโทรศัพท์9-11ตัว", "error")
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success")
+                        resolve(true)
+                    }
+                }
+
+                // check for a valid email address
+                if (field.type === "email") {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณากรอกข้อมูล`, "error")
+                        resolve(false)
+                    } else if (!emailRegex.test(field.value)) {
+                        this.setStatus(field, "รูปแบบอีเมลไม่ถูกต้อง กรุณากรอกให้ถูกต้อง", "error")
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success")
+                        resolve(true)
+                    }
+                }
+
+                if (field.id === "leadno") {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณากรอกข้อมูล`, "error")
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success")
+                        resolve(true)
+                    }
+                }
+
+                // check for a valid catagory / subcatagory
+                if (field.tagName === 'SELECT') {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณาเลือกธุรกิจ`, "error");
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success");
+                        resolve(true)
+                    }
+                }
+
+                // check for a valid checkbox
+                if (field.type === 'checkbox') {
+                    if (!field.checked) {
+                        this.setStatus(field, null, "error")
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success")
+                        resolve(true)
+                    }
+                }
+
+                // check for a valid CAPTCHA
+                if (field.id === 'captchaInput') {
+                    if (field.value.trim() === "") {
+                        this.setStatus(field, `กรุณาใส่ตัวอักษรให้ถูกต้อง`, "error")
+                        resolve(false)
+                    } else if (field.value !== document.getElementById('captcha').innerText) {
+                        this.setStatus(field, "กรุณาใส่ตัวอักษรให้ถูกต้อง", "error")
+                        resolve(false)
+                    } else {
+                        this.setStatus(field, null, "success")
+                        resolve(true)
+                    }
+                }
+
+            })
+        }
+
+
+        validateCaptcha() {
+            const input = document.getElementById('captchaInput').value;
+            const captcha = document.getElementById('captcha').innerText;
+            const message = document.getElementById('captchaMessage');
+            if (input === captcha) {
+                this.setStatus(document.getElementById('captchaInput'), null, "success");
+                return true;
+            } else {
+                this.setStatus(document.getElementById('captchaInput'), "กรุณาใส่ตัวอักษรให้ถูกต้อง", "error");
+                return false;
+            }
+        }
+
+        generateCaptcha() {
+            let captchaCode = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            for (let i = 0; i < 6; i++) {
+                captchaCode += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('captcha').innerText = captchaCode;
+            document.getElementById('captchaMessage').innerText = '';
+            document.getElementById('captchaInput').value = '';
+        }
+
+        setStatus(field, message, status) {
+
+            const errorMessage = field.parentElement.querySelector('.error-message')
+
+            if (status === "success") {
+                if (field.type === 'checkbox') {
+                    field.style.outline = ''
+                } else {
+                    if (errorMessage) { errorMessage.innerText = "" }
+                    field.classList.remove('input-error')
+                    field.classList.remove('focus:outline-[#FF0000]')
+                    field.classList.remove('border-red-500')
+                    field.classList.add('focus:outline-[#0447f5]')
+                }
+            }
+
+            if (status === "error") {
+                if (field.type === 'checkbox') {
+                    field.style.outline = '1px solid red'
+                } else {
+                    console.log('field : ', field)
+                    field.parentElement.querySelector('.error-message').innerText = message
+                    field.classList.add('input-error')
+                    field.classList.remove('focus:outline-[#0447f5]')
+                    field.classList.add('border-red-500')
+                    field.classList.add('focus:outline-[#FF0000]')
+                }
+            }
+        }
+    }
+
+    function handleToggleCheckbox1() {
+        let checkbox1 = document.getElementById("accecpt-condition");
+        let checkbox2 = document.getElementById("policy2");
+
+        if (checkbox1.checked) {
+            checkbox2.checked = true
+        } else {
+            checkbox1.checked = false
+            checkbox2.checked = false
+        }
+    }
+    function handleToggleCheckbox2() {
+        let checkbox1 = document.getElementById("accecpt-condition");
+        let checkbox2 = document.getElementById("policy2");
+
+        if (checkbox2.checked) {
+            checkbox1.checked = true
+        } else {
+            checkbox1.checked = false
+        }
+    }
+
+    let openDialogLink = document.getElementById("openDialogLink");
+    let closeDialogLink = document.getElementById("closeDialogButton");
+    let closeDialogLink2 = document.getElementById("closeDialogButton2");
+
+
+    openDialogLink.addEventListener("click", openDialog);
+    closeDialogLink.addEventListener("click", closeDialog);
+    closeDialogLink2.addEventListener("click", closeDialog);
+
+
+    function openDialog(event) {
+        event.preventDefault();
+        var dialog = document.getElementById("myModal");
+        dialog.classList.remove('hidden');
+    }
+
+    function closeDialog(event) {
+        event.preventDefault();
+        var dialog = document.getElementById("myModal");
+        dialog.classList.add('hidden')
+    }
+
+    let validator;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector('.form');
+        const fields = ["name", "mobile", "email", "category", "subcategory", "website", "leadno", "company", 'accecpt-condition', "accecpt-consent", "accecpt-news", "captchaInput"];
+
+        validator = new FormValidator(form, fields);
+        validator.initialize();
+    });
+
+</script>
+
+<style>
+    body {
+        font-family: 'prompt';
+    }
+
+    .captcha-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 50%;
+    }
+
+    #captcha {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 24px;
+        letter-spacing: 2px;
+        background-color: #e0e0e0;
+        padding: 10px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+</style>
+
+</html>
