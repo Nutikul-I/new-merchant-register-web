@@ -488,11 +488,11 @@ type NewResellerRegisterModel struct {
 	ServiceEDC     string `form:"cf1148"`         // ต้องการเครื่องรูดบัตรหรือไม่ ("1" ถ้าต้องการ)
 
 	// ข้อมูล Reseller
-	ResellerMID    string `form:"reseller-MID"`    // Reseller MID
-	ResellerEmail  string `form:"reseller-email"`  // Reseller Email
-	ResellerRemark string `form:"reseller-remark"` // Remark
+	ResellerMID    string `form:"resellerMID"`    // Reseller MID
+	ResellerEmail  string `form:"reselleremail"`  // Reseller Email
+	ResellerRemark string `form:"resellerRemark"` // Remark
 	// ต้องใช้ชื่อ field ซ้ำไม่ได้ จึงต้องเปลี่ยนชื่อ เช่น ResellerName
-	ResellerName string `form:"reseller-name"` // Reseller ชื่อ-นามสกุล
+	ResellerName string `form:"resellerName"` // Reseller ชื่อ-นามสกุล
 
 	// ข้อตกลง
 	AcceptPrivacyPolicy    string `form:"cf1150"` // ยอมรับนโยบายความเป็นส่วนตัว

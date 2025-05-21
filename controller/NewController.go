@@ -464,10 +464,10 @@ func (obj newController) CreateNewResellerRegister(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).Render("new-register-false", fiber.Map{"Error": "4101"})
 	}
 
-	// Proceed with merchant registration
+	// Proceed with reseller registration
 	result, err := obj.newService.CreateNewResellerRegister(body)
 	if err != nil {
-		log.Errorf("Error creating merchant register: %v", err)
+		log.Errorf("Error creating reseller register: %v", err)
 		return c.Status(fiber.StatusInternalServerError).Render("new-register-false", fiber.Map{"Error": "5101"})
 	}
 

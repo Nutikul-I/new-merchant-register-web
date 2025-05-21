@@ -1,7 +1,6 @@
 package service
 
 import (
-	"encoding/json"
 	"register-service/handler"
 	"register-service/model"
 	"runtime"
@@ -58,7 +57,6 @@ func (obj *dataAnalyticService) GetToken() (string, error) {
 	obj.cachedToken = token
 	obj.tokenExpiry = time.Now().Add(time.Duration(token.ExpiresIn) * time.Second)
 
-	log.Infof("Generate Venio Token Successfully, expires at: %v", obj.tokenExpiry)
 	return "Got Token", nil
 }
 
@@ -211,9 +209,6 @@ func (obj *dataAnalyticService) CreateReseller(registermodel model.NewResellerRe
 		}
 	}
 
-	data, _ := json.MarshalIndent(registermodel, "", "  ")
-	log.Infof("registerModel:\n%s", string(data))
-
 	var payload = model.CustomerRequest{
 		CustomerName:   registermodel.Name,
 		CustomerState:  1,
@@ -285,6 +280,6 @@ func (obj *dataAnalyticService) GetTokenByUrlValues() (string, error) {
 	obj.cachedToken = token
 	obj.tokenExpiry = time.Now().Add(time.Duration(token.ExpiresIn) * time.Second)
 
-	log.Infof("Generate Venio Token Successfully, expires at: %v", obj.tokenExpiry)
+	log.Info("Generate Venio Token Successfully")
 	return "Got Token", nil
 }

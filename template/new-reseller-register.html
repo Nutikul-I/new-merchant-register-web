@@ -57,6 +57,16 @@
                 <img src="https://cdn.paysolutions.io/assets/images/logo.jpg" alt="logo" class="rounded-circle bg-light"
                     style="width: 40px; height: 40px" />
                 <div class="position-relative">
+                    <div class="py-1 px-2 rounded-2 card text-sm" id="lang"></div>
+                    <div class="card rounded-3 bg-white shadow-lg position-absolute mt-1 overflow-scroll d-none"
+                        style="z-index: 1000; width: 80px" id="language">
+                        <div class="language-dropdown d-flex align-items-center" data-value="TH"><img
+                                src="https://cdn.paysolutions.io/assets/images/thai.png" alt="th" class="me-1"
+                                style="width: 15px; height: 15px" />TH</div>
+                        <div class="language-dropdown d-flex align-items-center" data-value="EN"><img
+                                src="https://cdn.paysolutions.io/assets/images/usa.png" alt="th" class="me-1"
+                                style="width: 15px; height: 15px" />EN</div>
+                    </div>
                 </div>
             </div>
             <div class="px-3 mb-4">
@@ -97,19 +107,17 @@
                                         <input type="email" class="form-control pt-4 ps-3" style="height: 60px"
                                             id="email" name="email" placeholder="youremail@example.com"
                                             maxlength="100" />
-                                        <small class="px-1 text-danger d-none" 
-                                        id="error-email">กรุณากรอกอีเมล</small>
+                                        <small class="px-1 text-danger d-none" id="error-email">กรุณากรอกอีเมล</small>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="mobile"
+                                        <label for="phone"
                                             class="form-label position-absolute ps-3 pt-2">เบอร์โทรศัพท์</label>
                                         <input type="tel" class="form-control pt-4 ps-3" style="height: 60px"
-                                            id="mobile" name="mobile" placeholder="0123456789" maxlength="10" />
+                                            id="phone" name="phone" placeholder="0123456789" maxlength="10" />
                                         <small class="px-1 text-danger d-none"
-                                            id="error-mobile">กรุณาระบุเบอร์โทรศัพท์</small>
+                                            id="error-phone">กรุณาระบุเบอร์โทรศัพท์</small>
                                     </div>
                                 </div>
-
                                 <!-- Business Category -->
                                 <div class="mb-2 position-relative">
                                     <label for="category"
@@ -139,7 +147,7 @@
                                         โซเชียลมีเดียธุรกิจ</label>
                                     <input type="text" class="form-control pt-4 ps-3"
                                         style="height: 60px; padding-right: 90px" id="website" name="website"
-                                        placeholder="ระบุเว็บไซต์ / โซเชียลมีเดียธุรกิจ" maxlength="100" required/>
+                                        placeholder="ระบุเว็บไซต์ / โซเชียลมีเดียธุรกิจ" maxlength="100" required />
                                     <div class="card rounded-2 position-absolute px-2 text-secondary"
                                         style="top: 20px; right: 16px"><small>บังคับใส่</small></div>
                                 </div>
@@ -167,41 +175,42 @@
 
                                 <!-- Reseller Info -->
                                 <div class="mb-2 position-relative">
-                                    <label for="reseller-name" class="form-label position-absolute ps-3 pt-2">Reseller
+                                    <label for="resellerName" class="form-label position-absolute ps-3 pt-2">Reseller
                                         name</label>
                                     <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
-                                        id="reseller-name" name="name" placeholder="ชื่อ-นามสกุล" maxlength="100" required/>
+                                        id="resellerName" name="resellerName" placeholder="ชื่อ-นามสกุล" maxlength="100"
+                                        required />
                                     <small class="px-1 text-danger d-none" id="error-name">ชื่อ-นามสกุล</small>
                                 </div>
 
-                
+
 
                                 <!-- Reseller MID -->
                                 <div class="mb-2 position-relative">
-                                    <label for="reseller-MID" class="form-label position-absolute ps-3 pt-2">Reseller
+                                    <label for="resellerMID" class="form-label position-absolute ps-3 pt-2">Reseller
                                         MID</label>
                                     <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
-                                        id="reseller-MID" name="reseller-MID" placeholder="01234567890123456789"
+                                        id="resellerMID" name="resellerMID" placeholder="01234567890123456789"
                                         maxlength="100" required />
                                     <small class="px-1 text-danger d-none" id="error-MID">Reseller MID</small>
                                 </div>
 
                                 <!-- Reseller Email -->
                                 <div class="mb-2 position-relative">
-                                    <label for="reseller-email"
-                                        class="form-label position-absolute ps-3 pt-2">Reseller Email</label>
+                                    <label for="resellerEmail" class="form-label position-absolute ps-3 pt-2">Reseller
+                                        Email</label>
                                     <input type="email" class="form-control pt-4 ps-3" style="height: 60px"
-                                        id="reseller-email" name="reseller-email"
-                                        placeholder="youremail@example.com" maxlength="100" required />
+                                        id="resellerEmail" name="resellerEmail" placeholder="youremail@example.com"
+                                        maxlength="100" required />
                                     <small class="px-1 text-danger d-none" id="error-email">กรุณากรอกอีเมล</small>
                                 </div>
 
                                 <!-- Reseller Remark (Optional) -->
                                 <div class="mb-2 position-relative">
-                                    <label for="reseller-remark" class="form-label position-absolute ps-3 pt-2">Remark (ไม่บังคับ)</label>
+                                    <label for="resellerRemark" class="form-label position-absolute ps-3 pt-2">Remark
+                                        (ไม่บังคับ)</label>
                                     <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
-                                        id="reseller-remark" name="reseller-remark" placeholder=""
-                                        maxlength="255" />
+                                        id="resellerRemark" name="resellerRemark" placeholder="" maxlength="255" />
                                     <small class="px-1 text-danger d-none" id="error-remark">กรุณากรอกหมายเหตุ</small>
                                 </div>
                             </div>
@@ -475,22 +484,22 @@
             email.classList.remove("error-box");
             error_email.classList.add("d-none");
         }
-        let mobile = document.getElementById("mobile");
-        let error_mobile = document.getElementById("error-mobile");
-        const mobileRegex = /^\d{10}$/;
-        if (!mobile.value.trim()) {
-            mobile.classList.add("error-box");
-            error_m.textContent = language === "TH" ? "กรุณาระบุเบอร์โทรศัพท์" : "Please enter phone number";
-            error_mobile.classList.remove("d-none");
+        let phone = document.getElementById("phone");
+        let error_phone = document.getElementById("error-phone");
+        const phoneRegex = /^\d{10}$/;
+        if (!phone.value.trim()) {
+            phone.classList.add("error-box");
+            error_phone.textContent = language === "TH" ? "กรุณาระบุเบอร์โทรศัพท์" : "Please enter phone number";
+            error_phone.classList.remove("d-none");
             event?.preventDefault();
-        } else if (!mobileRegex.test(mobile.value.trim())) {
-            mobile.classList.add("error-box");
-            error_mobile.textContent = language === "TH" ? "กรุณาระบุเบอร์โทรศัพท์เฉพาะตัวเลข 10 หลักเท่านั้น" : "Please enter only 10 digits of phone number";
-            error_mobile.classList.remove("d-none");
+        } else if (!phoneRegex.test(phone.value.trim())) {
+            phone.classList.add("error-box");
+            error_phone.textContent = language === "TH" ? "กรุณาระบุเบอร์โทรศัพท์เฉพาะตัวเลข 10 หลักเท่านั้น" : "Please enter only 10 digits of phone number";
+            error_phone.classList.remove("d-none");
             event?.preventDefault();
         } else {
-            mobile.classList.remove("error-box");
-            error_mobile.classList.add("d-none");
+            phone.classList.remove("error-box");
+            error_phone.classList.add("d-none");
         }
         let category = document.getElementById("category");
         let error_category = document.getElementById("error-category");

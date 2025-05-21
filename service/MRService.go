@@ -845,21 +845,21 @@ func (obj mrService) CreateNewResellerRegister(registermodel model.NewResellerRe
 	})
 
 	// check input
-	if len(registermodel.Email) <= 0 || len(registermodel.Company) <= 0 || len(registermodel.Name) <= 0 || len(registermodel.Mobile) <= 0 {
+	if len(registermodel.Email) <= 0 || len(registermodel.Company) <= 0 || len(registermodel.Name) <= 0 || len(registermodel.Phone) <= 0 {
 		log.Errorf("Error : Incorrect information")
 		return "Error", errors.New("Incorrect information")
 	}
 
-	// insert temp merchant
-	tempmerchant, err := obj.mrHandler.CreateNewReseller(registermodel)
+	// insert temp reseller
+	tempReseller, err := obj.mrHandler.CreateNewReseller(registermodel)
 	if err != nil {
 		log.Errorf("DB Error : %#v", err)
 		return "Error", err
 	}
 
-	log.Debugf("create temp merchants ==> %#v", tempmerchant)
+	log.Debugf("create temp reseller ==> %#v", tempReseller)
 
-	if tempmerchant != "COMPLETE" {
+	if tempReseller != "COMPLETE" {
 		return "Error", errors.New("Missing invalid field")
 	}
 	return "Register Success", nil

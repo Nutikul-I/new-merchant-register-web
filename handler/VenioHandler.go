@@ -123,7 +123,6 @@ func (vh *venioHandler) CreateCustomer(payload model.CustomerRequest) {
 		log.Error("Error serializing payload to JSON(Venio): ", err)
 		return
 	}
-	log.Info("Payload: ", string(jsonPayload))
 
 	// Create an HTTP request
 	client := &http.Client{}
@@ -132,8 +131,6 @@ func (vh *venioHandler) CreateCustomer(payload model.CustomerRequest) {
 		log.Error("Error creating HTTP request(Venio): ", err)
 		return
 	}
-
-	// log.Info("tokenCache.Token: ", tokenCache.Token)
 
 	req.Header.Add("Ocp-Apim-Subscription-Key", viper.GetString("OCP_APIM_SUBSCRIPTION_KEY"))
 	req.Header.Add("Content-Type", "application/json")
@@ -145,8 +142,6 @@ func (vh *venioHandler) CreateCustomer(payload model.CustomerRequest) {
 		return
 	}
 	defer res.Body.Close()
-
-	log.Info("Response status from Venio: ", res.Status)
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
@@ -176,8 +171,6 @@ func (vh *venioHandler) GetTokenByUrlValues() (model.TokenResponse, error) {
 	payload.Set("client_secret", viper.GetString("VENIO_CLIENT_SECRET"))
 
 	encodedPayload := payload.Encode()
-	log.Info("Payload:", encodedPayload)
-	log.Info("URL:", urlVenio)
 
 	req, err := http.NewRequest("POST", urlVenio, strings.NewReader(encodedPayload))
 	if err != nil {
@@ -196,16 +189,11 @@ func (vh *venioHandler) GetTokenByUrlValues() (model.TokenResponse, error) {
 	}
 	defer res.Body.Close()
 
-	log.Info("Response status:", res.Status)
-	log.Info("Response:", res)
-
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		log.Errorf("Failed to read response body: %v", err)
 		return model.TokenResponse{}, err
 	}
-	log.Info("Response body:", string(body))
-
 	var venioToken model.TokenResponse
 	if err := json.Unmarshal(body, &venioToken); err != nil {
 		log.Errorf("Failed to unmarshal token response: %v", err)
