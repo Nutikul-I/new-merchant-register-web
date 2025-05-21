@@ -1,6 +1,7 @@
 package service
 
 import (
+	"encoding/json"
 	"register-service/handler"
 	"register-service/model"
 	"runtime"
@@ -15,6 +16,7 @@ type DataAnalyticService interface {
 	CreateCustomer(registermodel model.NewRegisterModel, utm_source, utm_medium, utm_campaign, utm_content, owner string)
 
 	CreateReseller(registermodel model.NewResellerRegisterModel, utm_source, utm_medium, utm_campaign, utm_content, owner string)
+	GetTokenByUrlValues() (message string, err error)
 }
 
 type dataAnalyticService struct {
@@ -195,7 +197,6 @@ func (obj *dataAnalyticService) CreateReseller(registermodel model.NewResellerRe
 	log.Infof("Start sending customer data to Venio")
 
 	var interestsName []string
-	var categoryNameEN string
 	var owners []string
 
 	Catagory, err := obj.newService.GetCatagory()
@@ -210,12 +211,15 @@ func (obj *dataAnalyticService) CreateReseller(registermodel model.NewResellerRe
 		}
 	}
 
+	data, _ := json.MarshalIndent(registermodel, "", "  ")
+	log.Infof("registerModel:\n%s", string(data))
+
 	var payload = model.CustomerRequest{
 		CustomerName:   registermodel.Name,
 		CustomerState:  1,
 		CustomerStatus: 0,
 		CustomerType:   1,
-		SourceName:     "Z-" + categoryNameEN,
+		SourceName:     "new-reseller-register",
 		LeadStatus:     1,
 		InterestsName:  interestsName,
 		CustomFields: []model.CustomField{
@@ -251,4 +255,36 @@ func (obj *dataAnalyticService) CreateReseller(registermodel model.NewResellerRe
 	log.Info("Send cutomer data to Venio")
 	obj.venioHandler.CreateCustomer(payload)
 
+}
+
+func (obj *dataAnalyticService) GetTokenByUrlValues() (string, error) {
+	// Define log component
+	_, file, _, _ := runtime.Caller(1)
+	pc, _, _, _ := runtime.Caller(1)
+	functionName := strings.Split(runtime.FuncForPC(pc).Name(), ".")[len(strings.Split(runtime.FuncForPC(pc).Name(), "."))-1]
+
+	log := log.WithFields(log.Fields{
+		"component": file[strings.LastIndex(file, "/")+1:],
+		"function":  functionName,
+	})
+
+	if obj.cachedToken.AccessToken != "" && time.Now().Before(obj.tokenExpiry.Add(-40*time.Minute)) {
+		log.Infof("Get Venio Token from cache, expires at: %v", obj.tokenExpiry.Add(-40*time.Minute))
+		return "Using cached token", nil
+	}
+
+	log.Info("Generate Venio Token")
+	token, err := obj.venioHandler.GetTokenByUrlValues()
+	if err != nil {
+		log.Errorf("Failed to generate token: %v", err)
+		obj.cachedToken = model.TokenResponse{}
+		return "Failed to gererate token", err
+	}
+
+	// Store the new token and set expiry
+	obj.cachedToken = token
+	obj.tokenExpiry = time.Now().Add(time.Duration(token.ExpiresIn) * time.Second)
+
+	log.Infof("Generate Venio Token Successfully, expires at: %v", obj.tokenExpiry)
+	return "Got Token", nil
 }

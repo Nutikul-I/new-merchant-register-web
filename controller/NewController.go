@@ -476,7 +476,7 @@ func (obj newController) CreateNewResellerRegister(c *fiber.Ctx) error {
 	utm_campaign := c.Query("utm_campaign")
 	utm_content := c.Query("utm_content")
 
-	message, err := obj.dataAnalyticService.GetToken()
+	message, err := obj.dataAnalyticService.GetTokenByUrlValues()
 	if err != nil {
 		log.Errorf("Error fetching Venio token: %v", err)
 	}

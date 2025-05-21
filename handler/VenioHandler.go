@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/url"
 	"register-service/model"
 	"runtime"
 	"strings"
@@ -17,6 +18,8 @@ import (
 type VenioHandler interface {
 	GetToken() (model.TokenResponse, error)
 	CreateCustomer(payload model.CustomerRequest)
+
+	GetTokenByUrlValues() (model.TokenResponse, error)
 }
 
 type venioHandler struct{}
@@ -120,6 +123,7 @@ func (vh *venioHandler) CreateCustomer(payload model.CustomerRequest) {
 		log.Error("Error serializing payload to JSON(Venio): ", err)
 		return
 	}
+	log.Info("Payload: ", string(jsonPayload))
 
 	// Create an HTTP request
 	client := &http.Client{}
@@ -150,4 +154,67 @@ func (vh *venioHandler) CreateCustomer(payload model.CustomerRequest) {
 		return
 	}
 	log.Info(string(body))
+}
+
+func (vh *venioHandler) GetTokenByUrlValues() (model.TokenResponse, error) {
+	// Define log component
+	_, file, _, _ := runtime.Caller(1)
+	pc, _, _, _ := runtime.Caller(1)
+	functionName := strings.Split(runtime.FuncForPC(pc).Name(), ".")[len(strings.Split(runtime.FuncForPC(pc).Name(), "."))-1]
+
+	log := log.WithFields(log.Fields{
+		"component": file[strings.LastIndex(file, "/")+1:],
+		"function":  functionName,
+	})
+
+	log.Info("Getting new token from Venio API")
+	urlVenio := strings.TrimRight(viper.GetString("VENIO_URL"), "/") + "/authorization/connect/token"
+
+	payload := url.Values{}
+	payload.Set("grant_type", "client_credentials")
+	payload.Set("client_id", viper.GetString("VENIO_CLIENT_ID"))
+	payload.Set("client_secret", viper.GetString("VENIO_CLIENT_SECRET"))
+
+	encodedPayload := payload.Encode()
+	log.Info("Payload:", encodedPayload)
+	log.Info("URL:", urlVenio)
+
+	req, err := http.NewRequest("POST", urlVenio, strings.NewReader(encodedPayload))
+	if err != nil {
+		log.Errorf("Failed to create request: %v", err)
+		return model.TokenResponse{}, err
+	}
+
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Add("Ocp-Apim-Subscription-Key", viper.GetString("OCP_APIM_SUBSCRIPTION_KEY"))
+
+	client := &http.Client{}
+	res, err := client.Do(req)
+	if err != nil {
+		log.Errorf("Request failed: %v", err)
+		return model.TokenResponse{}, err
+	}
+	defer res.Body.Close()
+
+	log.Info("Response status:", res.Status)
+	log.Info("Response:", res)
+
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Errorf("Failed to read response body: %v", err)
+		return model.TokenResponse{}, err
+	}
+	log.Info("Response body:", string(body))
+
+	var venioToken model.TokenResponse
+	if err := json.Unmarshal(body, &venioToken); err != nil {
+		log.Errorf("Failed to unmarshal token response: %v", err)
+		return model.TokenResponse{}, err
+	}
+
+	// Store the token for future use
+	StoreToken(venioToken.AccessToken)
+	log.Info("Stored new token successfully")
+
+	return venioToken, nil
 }
