@@ -33,6 +33,8 @@ type MRHandler interface {
 	AWSSendMail(mail map[string]string) (string, error)
 	SendNotiGoogleChat(noti map[string]string) (string, error)
 	CreateNewMerchant(data model.NewRegisterModel) (string, error)
+
+	CreateNewReseller(data model.NewResellerRegisterModel) (string, error)
 }
 
 type mrHandler struct {
@@ -507,6 +509,74 @@ func (obj mrHandler) CreateNewMerchant(data model.NewRegisterModel) (string, err
 	formData.Set("cf_1152", currentDate)
 	formData.Set("cf_1154", data.CF1154)
 	formData.Set("cf_1156", currentDate)
+	parts := strings.Fields(data.Name)
+	if len(parts) > 1 {
+		formData.Set("firstname", parts[0])
+		formData.Set("lastname", strings.Join(parts[1:], " "))
+	} else {
+		formData.Set("firstname", data.Name)
+		formData.Set("lastname", "-")
+	}
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, urlStr, strings.NewReader(formData.Encode()))
+	if err != nil {
+		log.Fatalf("Error creating request: %v", err)
+	}
+
+	// Setting headers for form submission
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatalf("Error making request: %v", err)
+		return "ERROR", nil
+	}
+	defer resp.Body.Close()
+
+	log.Printf("Response status: %s", resp.Status)
+
+	return "COMPLETE", nil
+}
+
+func (obj mrHandler) CreateNewReseller(data model.NewResellerRegisterModel) (string, error) {
+	_, file, _, _ := runtime.Caller(0)
+	pc, _, _, _ := runtime.Caller(0)
+	functionName := strings.Split(runtime.FuncForPC(pc).Name(), ".")[len(strings.Split(runtime.FuncForPC(pc).Name(), "."))-1]
+
+	log := log.WithFields(log.Fields{
+		"component": strings.Split(file, "/")[len(strings.Split(file, "/"))-1],
+		"funciton":  functionName,
+	})
+
+	urlStr := viper.GetString("NEW_REGISTER_VTIGER")
+	method := "POST"
+
+	// currentDate := time.Now().Format("2006-01-02")
+
+	formData := url.Values{}
+	formData.Set("__vtrftk", viper.GetString("VTRFTK"))
+	formData.Set("publicid", viper.GetString("PUBLICID"))
+	formData.Set("urlencodeenable", "1")
+	formData.Set("name", "LDP-FB Group")
+	formData.Set("mobile", data.Mobile)
+	formData.Set("email", data.Email)
+	formData.Set("category", data.Category)
+	formData.Set("categorynameTH", data.CategoryNameTH)
+	formData.Set("categorynameEN", data.CategoryNameEN)
+	formData.Set("leadsource", data.LeadSource)
+	formData.Set("leadstatus", "New Lead")
+	formData.Set("cf1148", data.ServiceEDC)
+	formData.Set("reseller-MID", data.ResellerMID)
+	formData.Set("reseller-email", data.ResellerEmail)
+	formData.Set("reseller-remark", data.ResellerRemark)
+	formData.Set("reseller-name", data.ResellerName)
+	formData.Set("cf1150", data.AcceptPrivacyPolicy)
+	formData.Set("cf1154", data.AcceptMarketingConsent)
+	formData.Set("leadsource", data.LeadSource)
+	formData.Set("company", data.Company)
+	formData.Set("website", data.Website)
+	formData.Set("cf_1129", data.CF1129)
 	parts := strings.Fields(data.Name)
 	if len(parts) > 1 {
 		formData.Set("firstname", parts[0])

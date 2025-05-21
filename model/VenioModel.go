@@ -29,6 +29,7 @@ type (
 	Contact struct {
 		ContactName   string `json:"contactName"`   // ผู้ติดต่อ Required
 		ContactStatus bool   `json:"contactStatus"` // true = active , false = inactive
+		ContactPhone  string `json:"contactPhone"`  // เบอร์โทรศัพท์ ของผู้ติดต่อ
 		ContactMobile string `json:"contactMobile"` // เบอร์โทรศัพมือถือ ของผู้ติดต่อ
 		ContactEmail  string `json:"contactEmail"`  // Email ของผู้ติดต่อ
 	}

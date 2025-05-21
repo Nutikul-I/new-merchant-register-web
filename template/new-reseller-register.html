@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Paysolutions สมัครใช้บริการของเรา</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="Paysolutions สมัครใช้บริการของเรา" />
+    <meta name="keywords" content="Paysolutions สมัครใช้บริการของเรา" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="https://www.paysolutions.asia/assets/images/favicon-payso.png" type="image/gif"
+        sizes="16x16" />
+    <link rel="stylesheet" href="https://use.typekit.net/get6zlj.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="https://cdn.sable.asia/tracking-64143fe1b25d7a2551355177.js" data-cfasync="false"></script>
+    <script src="https://cdn.sable.asia/widget-social-64143fe1b25d7a2551355177.js" data-cfasync="false"></script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-T9X4LFG");
+    </script>
+    <!-- End Google Tag Manager -->
+</head>
+<link rel="stylesheet" href="https://use.typekit.net/get6zlj.css" />
+
+<body class="position-relative">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9X4LFG" height="0" width="0"
+            style="display: none; visibility: hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="min-vh-100 w-100 d-none position-fixed" id="bg-dropdown" style="z-index: 999"></div>
+    <div class="row min-vh-100">
+        <div class="col-12 col-lg-6 col-xxl-7 position-relative min-vh-100" style="height:100%">
+            <div class="p-3 d-flex align-items-center justify-content-between">
+                <img src="https://cdn.paysolutions.io/assets/images/logo.jpg" alt="logo" class="rounded-circle bg-light"
+                    style="width: 40px; height: 40px" />
+                <div class="position-relative">
+                    <div class="py-1 px-2 rounded-2 card text-sm" id="lang"></div>
+                    <div class="card rounded-3 bg-white shadow-lg position-absolute mt-1 overflow-scroll d-none"
+                        style="z-index: 1000; width: 80px" id="language">
+                        <div class="language-dropdown d-flex align-items-center" data-value="TH"><img
+                                src="https://cdn.paysolutions.io/assets/images/thai.png" alt="th" class="me-1"
+                                style="width: 15px; height: 15px" />TH</div>
+                        <div class="language-dropdown d-flex align-items-center" data-value="EN"><img
+                                src="https://cdn.paysolutions.io/assets/images/usa.png" alt="th" class="me-1"
+                                style="width: 15px; height: 15px" />EN</div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-3 mb-4">
+                <div class="row">
+                    <div class="col-12 col-md-10 col-lg-11 col-xl-9 col-xxl-7 mx-auto">
+                        <!-- <form action="/view-register/new/new-register" name="form_register" method="post" class="form" id="form_register" style="text-align: left" onsubmit="validateForm(event)"> -->
+                        <form
+                            action="/new/new-reseller-register?utm_source={{.UtmSource}}&utm_medium={{.UtmMedium}}&utm_campaign={{.UtmCampaign}}&utm_content={{.UtmContent}}"
+                            name="form_register" method="post" class="form" id="form_register" style="text-align: left"
+                            onsubmit="validateForm(event)">
+                            <h3 class="mt-3 mb-2">Resellerเปิดบัญชีเพย์โซลูชั่นให้กับร้านค้า</h3>
+                            <!-- ข้อมูลร้านค้า -->
+                            <div class="container bg-white p-1 rounded ">
+                                <h4 class="mt-3 mb-4">ข้อมูลร้านค้า</h4>
+                                <!-- Name -->
+                                <div class="mb-2 position-relative">
+                                    <label for="name"
+                                        class="form-label position-absolute ps-3 pt-2">ชื่อ-นามสกุล</label>
+                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px" id="name"
+                                        name="name" placeholder="ระบุชื่อ-นามสกุล" maxlength="100" />
+                                    <small class="px-1 text-danger d-none" id="error-name">กรุณากรอกชื่อ-นามสกุล</small>
+                                </div>
+
+                                <!-- Company -->
+                                <div class="mb-2 position-relative">
+                                    <label for="company"
+                                        class="form-label position-absolute ps-3 pt-2">ชื่อบริษัท</label>
+                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px" id="company"
+                                        name="company" placeholder="ระบุชื่อบริษัท" maxlength="100" />
+                                    <small class="px-1 text-danger d-none"
+                                        id="error-company">กรุณากรอกชื่อบริษัท</small>
+                                </div>
+
+                                <!-- Email and Phone -->
+                                <div class="row g-3 mb-2">
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label position-absolute ps-3 pt-2">อีเมล</label>
+                                        <input type="email" class="form-control pt-4 ps-3" style="height: 60px"
+                                            id="email" name="email" placeholder="youremail@example.com"
+                                            maxlength="100" />
+                                        <small class="px-1 text-danger d-none" id="error-email">กรุณากรอกอีเมล</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="mobile"
+                                            class="form-label position-absolute ps-3 pt-2">เบอร์โทรศัพท์</label>
+                                        <input type="tel" class="form-control pt-4 ps-3" style="height: 60px"
+                                            id="mobile" name="mobile" placeholder="012-345-6789" maxlength="10" />
+                                        <small class="px-1 text-danger d-none"
+                                            id="error-mobile">กรุณาระบุเบอร์โทรศัพท์</small>
+                                    </div>
+                                </div>
+
+                                <!-- Business Category -->
+                                <div class="mb-2 position-relative">
+                                    <label for="category"
+                                        class="form-label position-absolute ps-3 pt-2">หมวดหมู่ธุรกิจ</label>
+                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px" id="category"
+                                        name="category" placeholder="ค้นหาหรือระบุหมวดหมู่ธุรกิจ" autocomplete="off" />
+                                    <div class="w-100 card rounded-3 bg-white shadow-lg position-absolute mt-1 overflow-scroll d-none"
+                                        style="z-index: 1000; max-height: 300px" id="dropdown">
+                                        {{ $length := len .Catagory }} {{ if eq $length 0 }}{{ else }} {{range $item :=
+                                        .Catagory }}
+                                        <div class="select-dropdown" data-value-th="{{ $item.NameTH }}"
+                                            data-value-en="{{ $item.NameEN }}">{{if eq $.Lang "EN"}} {{ $item.NameEN }}
+                                            {{else}} {{$item.NameTH}} {{end}} </div>
+                                        {{ end }} {{ end }}
+                                        <div class="select-dropdown" id="other-category" data-value-th=""
+                                            data-value-en=""></div>
+                                    </div>
+                                    <small class="px-1 text-danger d-none"
+                                        id="error-category">กรุณาเลือกหมวดหมู่ธุรกิจ</small>
+                                    <input type="hidden" id="categorynameTH" name="categorynameTH" value="" />
+                                    <input type="hidden" id="categorynameEN" name="categorynameEN" value="" />
+                                </div>
+
+                                <!-- Website or Social Media -->
+                                <div class="position-relative">
+                                    <label for="website" class="form-label position-absolute ps-3 pt-2">เว็บไซต์ /
+                                        โซเชียลมีเดียธุรกิจ</label>
+                                    <input type="text" class="form-control pt-4 ps-3"
+                                        style="height: 60px; padding-right: 90px" id="website" name="website"
+                                        placeholder="ระบุเว็บไซต์ / โซเชียลมีเดียธุรกิจ" maxlength="100" />
+                                    <div class="card rounded-2 position-absolute px-2 text-secondary"
+                                        style="top: 20px; right: 16px"><small>บังคับ</small></div>
+                                </div>
+
+                                <!-- Service -->
+                                <label class="my-4 form-control d-flex align-items-center p-2 box-service"
+                                    for="cf1148_c" id="box-service">
+                                    <input type="checkbox" id="cf1148_c" class="mb-3" checked />
+
+                                    <div class="w-100 px-2">
+                                        <div class="pt-1 fw-medium">ต้องการเพิ่มบริการเครื่องรูดบัตรหรือไม่?</div>
+                                        <small class="text-secondary">รองรับการผ่อนชำระทุกธนาคาร <a
+                                                href="https://paysolutions.asia/featured-service/PaySoEDC.html"
+                                                ral="noopener" target="_blank">ดูรายละเอียด</a></small>
+                                    </div>
+                                    <input type="hidden" id="cf1148" name="cf1148" value="1" />
+                                </label>
+                            </div>
+                            <!-- END ข้อมูลร้านค้า -->
+
+
+                            <!-- ข้อมูล Reseller -->
+                            <div class="container bg-white p-2 rounded  my-4">
+                                <h4 class="mt-2 mb-4">ข้อมูล Reseller</h4>
+
+                                <!-- Reseller Info -->
+                                <div class="mb-2 position-relative">
+                                    <label for="reseller-name" class="form-label position-absolute ps-3 pt-2">Reseller
+                                        name</label>
+                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
+                                        id="reseller-name" name="name" placeholder="ชื่อ-นามสกุล" maxlength="100" />
+                                    <small class="px-1 text-danger d-none" id="error-name">ชื่อ-นามสกุล</small>
+                                </div>
+
+                
+
+                                <!-- Reseller MID -->
+                                <div class="mb-2 position-relative">
+                                    <label for="reseller-MID" class="form-label position-absolute ps-3 pt-2">Reseller
+                                        MID</label>
+                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
+                                        id="reseller-MID" name="reseller-MID" placeholder="01234567890123456789"
+                                        maxlength="100" />
+                                    <small class="px-1 text-danger d-none" id="error-MID">Reseller MID</small>
+                                </div>
+
+                                <!-- Reseller Email -->
+                                <div class="mb-2 position-relative">
+                                    <label for="reseller-email"
+                                        class="form-label position-absolute ps-3 pt-2">Reseller Email</label>
+                                    <input type="email" class="form-control pt-4 ps-3" style="height: 60px"
+                                        id="reseller-email" name="reseller-email"
+                                        placeholder="youremail@example.com" maxlength="100" />
+                                    <small class="px-1 text-danger d-none" id="error-email">กรุณากรอกอีเมล</small>
+                                </div>
+
+                                <!-- Reseller Remark (Optional) -->
+                                <div class="mb-2 position-relative">
+                                    <label for="reseller-remark" class="form-label position-absolute ps-3 pt-2">Remark (ไม่บังคับ)</label>
+                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
+                                        id="reseller-remark" name="reseller-remark" placeholder=""
+                                        maxlength="255" />
+                                    <small class="px-1 text-danger d-none" id="error-remark">กรุณากรอกหมายเหตุ</small>
+                                </div>
+                            </div>
+                            <!-- End ข้อมูล Reseller -->
+                            <div class="mb-2 ps-2">
+                                <div class="d-flex align-items-start">
+                                    <input type="checkbox" id="cf1150_c" class="mt-1" />
+                                    <input type="hidden" id="cf1150" name="cf1150" value="0" />
+                                    <label class="text-secondary px-2" for="cf1150_c">ฉันรับทราบและยอมรับข้อตกลงตาม <a
+                                            href="https://paysolutions.asia/privacy-policy.html" ral="noopener"
+                                            target="_blank">นโยบายความเป็นส่วนตัว</a></label>
+                                </div>
+                                <small class="px-4 text-danger d-none" id="error-cf1150_c">กรุณากดยอมรับข้อตกลง</small>
+                            </div>
+                            <div class="d-flex align-items-start mb-2 ps-2">
+                                <input type="checkbox" id="cf1154_c" class="mt-1" />
+                                <input type="hidden" id="cf1154" name="cf1154" value="0" />
+                                <label class="text-secondary px-2" for="cf1154_c">ฉันรับทราบและยินยอมให้ เพย์โซลูชั่น
+                                    เก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนตัว เพื่อวัตถุประสงค์ทางการตลาด</label>
+                            </div>
+                            <input type="hidden" id="leadsource" name="leadsource" value="" />
+                            <input type="hidden" id="cf1129" name="cf1129" value="" />
+                            <div class="cf-turnstile mb-3" data-sitekey="0x4AAAAAAAx-rlJnC-x5_FI-" data-theme="light"
+                                data-size="flexible"></div>
+                            <button type="submit" class="btn btn-primary w-100 mb-3">ยืนยัน</button>
+                            <div class="text-secondary px-2 mb-4 text-center">มีบัญชีกับเราแล้ว? <a
+                                    href="https://controls.paysolutions.asia/th/authen" ral="noopener">เข้าสู่ระบบ</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="position-absolute" style="left: 16px; bottom: 16px;">@ Pay Solutions</div>
+        </div>
+        <div class="col-12 col-lg-6 col-xxl-5 d-none d-lg-block min-vh-100s">
+            <div class="d-flex position-relative" style="height:100%">
+                <div class="p-5 rounded-4 position-absolute d-flex align-items-center justify-content-center"
+                    style="top: 16px; bottom: 16px; left: 16px; right: 16px; background-color: #f1f4fe">
+                    <div class="text-center">
+                        <div class="position-relative overflow-hidden mb-4" style="width: 75%; margin: 0 auto">
+                            <div class="slider-container">
+                                <div class="slider-left">
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo1.png"
+                                        class="mx-auto mb-4" />
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo1.png"
+                                        class="mx-auto mb-4" />
+                                </div>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-right">
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo2.png"
+                                        class="mx-auto mb-4" />
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo2.png"
+                                        class="mx-auto mb-4" />
+                                </div>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-left">
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo3.png"
+                                        class="mx-auto mb-4" />
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo3.png"
+                                        class="mx-auto mb-4" />
+                                </div>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-right">
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo4.png"
+                                        class="mx-auto mb-4" />
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo4.png"
+                                        class="mx-auto mb-4" />
+                                </div>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-left">
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo5.png"
+                                        class="mx-auto mb-4" />
+                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo5.png"
+                                        class="mx-auto mb-4" />
+                                </div>
+                            </div>
+                            <div class="bggradient"></div>
+                        </div>
+                        <h3 class="fw-semibold mb-4">รองรับทุกการจ่าย ครบ จบในที่เดียว</h3>
+                        <label style="font-size: 18px; color: #475467">ระบบรับชำระเงินที่เข้าใจผู้ประกอบการ
+                            ไม่พลาดทุกยอดขาย<br />ครอบคลุมทั้งออนไลน์และออฟไลน์
+                            พร้อมเคียงข้างทุกธุรกิจให้เติบโตไปด้วยกัน</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(() => {
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const language = params.get("lang") || "TH";
+        let text = {
+            "สนใจเปิดบัญชีเพย์ โซลูชั่น": "Interested in Pay Solutions",
+            "กรุณากรอกชื่อ-นามสกุล": "Please enter first and last name",
+            กรุณากรอกชื่อบริษัท: "Please enter company name",
+            กรุณากรอกอีเมล: "Please enter email",
+            กรุณาระบุเบอร์โทรศัพท์: "Please enter phone number",
+            กรุณาเลือกหมวดหมู่ธุรกิจ: "Please select a business category",
+            กรุณากดยอมรับข้อตกลง: "Please click to accept the agreement",
+            "ระบุชื่อ-นามสกุล": "Enter full name",
+            ระบุชื่อบริษัท: "Enter company name",
+            ค้นหาหรือระบุหมวดหมู่ธุรกิจ: "Search or specify a business category",
+            "ระบุเว็บไซต์ / โซเชียลมีเดียธุรกิจ": "Enter website or social media account",
+            "ชื่อ-นามสกุล": "Full Name",
+            ชื่อบริษัท: "Compoany Name",
+            อีเมล: "Email",
+            เบอร์โทรศัพท์: "Phone Number",
+            หมวดหมู่ธุรกิจ: "Business Category",
+            "เว็บไซต์ / โซเชียลมีเดียธุรกิจ": "Website or Socail Media",
+            ไม่บังคับ: "Optional",
+            "ต้องการเพิ่มบริการเครื่องรูดบัตรหรือไม่?": "Include Swiping Machine (EDC)",
+            รองรับการผ่อนชำระทุกธนาคาร: "Supports installiment payments through all banks.",
+            ดูรายละเอียด: "See details",
+            ฉันรับทราบและยอมรับข้อตกลงตาม: "I acknowledge and accept the terms of the",
+            นโยบายความเป็นส่วนตัว: "Privacy Policy.",
+            "ฉันรับทราบและยินยอมให้ เพย์โซลูชั่น เก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนตัว เพื่อวัตถุประสงค์ทางการตลาด": "I acknowledge and consent to PaySolution collecting. using, and disclosing personal information for marketing purposes.",
+            ยืนยัน: "Confirm",
+            "มีบัญชีกับเราแล้ว?": "Already have and account",
+            เข้าสู่ระบบ: "Login",
+            "รองรับทุกการจ่าย ครบ จบในที่เดียว": "All your payments in one spot!",
+            "ระบบรับชำระเงินที่เข้าใจผู้ประกอบการ ไม่พลาดทุกยอดขาย": "A payment System that understands business owners,",
+            "ครอบคลุมทั้งออนไลน์และออฟไลน์ พร้อมเคียงข้างทุกธุรกิจให้เติบโตไปด้วยกัน": "never miss any sales, covers both online and offline chanels, ready to support every business to grow togetther.",
+        };
+        if (language.toLowerCase() === "en") {
+            document.getElementById("lang").innerHTML = '<div class="d-flex align-items-center"><img src="https://cdn.paysolutions.io/assets/images/usa.png" alt="th" class="me-1" style="width:15px;height:15px;">' + language.toLocaleUpperCase() + "</div>";
+            replaceTextContent(document.body, text);
+        } else {
+            document.getElementById("lang").innerHTML = '<div class="d-flex align-items-center"><img src="https://cdn.paysolutions.io/assets/images/thai.png" alt="th" class="me-1" style="width:15px;height:15px;">' + language.toLocaleUpperCase() + "</div>";
+        }
+        document.getElementById("leadsource").value = params.get("utm_source");
+        document.getElementById("cf1129").value = window.location.href;
+        // หมวดหมู่
+        $("#category").focus(function () {
+            $("#dropdown").removeClass("d-none");
+            $("#bg-dropdown").removeClass("d-none");
+            let options = document.getElementsByClassName("select-dropdown");
+            for (let item of options) {
+                $(item).removeClass("d-none");
+            }
+        });
+        $("#category").keyup(function (e) {
+            let selectedValue = e.target.value;
+            let options = document.getElementsByClassName("select-dropdown");
+            let other = document.getElementById("other-category");
+            other.setAttribute("data-value-th", selectedValue)
+            other.setAttribute("data-value-en", selectedValue)
+            //get lang
+            let lang = document.getElementById("lang").textContent;
+            if (lang === "TH") {
+                other.innerHTML = "หมวดหมู่อื่นๆ: " + selectedValue
+            } else {
+                other.innerHTML = "Other category: " + selectedValue
+            }
+            // other.innerHTML = "หมวดหมู่อื่นๆ: " + selectedValue
+            for (let item of options) {
+                let itemValue = item.getAttribute("data-value-th") + " " + item.getAttribute("data-value-en");
+                if (selectedValue === "" || (itemValue && itemValue.includes(selectedValue))) {
+                    $(item).removeClass("d-none");
+                } else {
+                    $(item).addClass("d-none");
+                }
+            }
+        });
+        $("#bg-dropdown").click(function () {
+            $("#dropdown").addClass("d-none");
+            $("#bg-dropdown").addClass("d-none");
+        });
+        // Dropdown
+        $(".select-dropdown").click(function (e) {
+            $("#dropdown").addClass("d-none");
+            $("#bg-dropdown").addClass("d-none");
+            let data_th = e.target.getAttribute("data-value-th");
+            let data_en = e.target.getAttribute("data-value-en");
+            $("#category").val(data_th);
+            $("#categorynameTH").val(data_th);
+            $("#categorynameEN").val(data_en);
+        });
+
+        // Language
+        $("#lang").click(function () {
+            $("#language").removeClass("d-none");
+            $("#bg-dropdown").removeClass("d-none");
+        });
+        $("#bg-dropdown").click(function () {
+            $("#language").addClass("d-none");
+            $("#bg-dropdown").addClass("d-none");
+        });
+        // Dropdown
+        $(".language-dropdown").click(function (e) {
+            if (e.target.getAttribute("data-value")) {
+                const url = new URL(window.location.href);
+                url.searchParams.delete("lang");
+                url.searchParams.set("lang", e.target.getAttribute("data-value"));
+                window.location.href = url.toString();
+            }
+        });
+        // Service
+        $("#cf1148_c").change(function (e) {
+            if (e.target.checked == true) {
+                $("#cf1148").val("1");
+                $("#box-service").addClass("box-service");
+            } else {
+                $("#cf1148").val("0");
+                $("#box-service").removeClass("box-service");
+            }
+        });
+        $("#cf1150_c").change(function (e) {
+            if (e.target.checked == true) {
+                $("#cf1150").val("1");
+            } else {
+                $("#cf1150").val("0");
+            }
+        });
+        $("#cf1154_c").change(function (e) {
+            if (e.target.checked == true) {
+                $("#cf1154").val("1");
+            } else {
+                $("#cf1154").val("0");
+            }
+        });
+    });
+
+    function validateForm(event) {
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const language = params.get("lang") || "TH";
+
+        let name = document.getElementById("name");
+        let error_name = document.getElementById("error-name");
+        if (!name.value.trim()) {
+            name.classList.add("error-box");
+            error_name.classList.remove("d-none");
+
+            event?.preventDefault();
+        } else {
+            name.classList.remove("error-box");
+            error_name.classList.add("d-none");
+        }
+        let company = document.getElementById("company");
+        let error_company = document.getElementById("error-company");
+        if (!company.value.trim()) {
+            company.classList.add("error-box");
+            error_company.classList.remove("d-none");
+            event?.preventDefault();
+        } else {
+            company.classList.remove("error-box");
+            error_company.classList.add("d-none");
+        }
+        let email = document.getElementById("email");
+        let error_email = document.getElementById("error-email");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email.value.trim()) {
+            email.classList.add("error-box");
+            error_email.textContent = language === "TH" ? "กรุณาระบุอีเมล" : "Please enter email";
+            error_email.classList.remove("d-none");
+            event?.preventDefault();
+        } else if (!emailRegex.test(email.value.trim())) {
+            email.classList.add("error-box");
+            error_email.textContent = language === "TH" ? "รูปแบบอีเมลไม่ถูกต้อง" : "Email format is invalid";
+            error_email.classList.remove("d-none");
+            event?.preventDefault();
+        } else {
+            email.classList.remove("error-box");
+            error_email.classList.add("d-none");
+        }
+        let mobile = document.getElementById("mobile");
+        let error_mobile = document.getElementById("error-mobile");
+        const mobileRegex = /^\d{10}$/;
+        if (!mobile.value.trim()) {
+            mobile.classList.add("error-box");
+            error_email.textContent = language === "TH" ? "กรุณาระบุเบอร์โทรศัพท์" : "Please enter phone number";
+            error_mobile.classList.remove("d-none");
+            event?.preventDefault();
+        } else if (!mobileRegex.test(mobile.value.trim())) {
+            mobile.classList.add("error-box");
+            error_mobile.textContent = language === "TH" ? "กรุณาระบุเบอร์โทรศัพท์เฉพาะตัวเลข 10 หลักเท่านั้น" : "Please enter only 10 digits of phone number";
+            error_mobile.classList.remove("d-none");
+            event?.preventDefault();
+        } else {
+            mobile.classList.remove("error-box");
+            error_mobile.classList.add("d-none");
+        }
+        let category = document.getElementById("category");
+        let error_category = document.getElementById("error-category");
+        if (!category.value.trim()) {
+            category.classList.add("error-box");
+            error_category.classList.remove("d-none");
+            event?.preventDefault();
+        } else {
+            category.classList.remove("error-box");
+            error_category.classList.add("d-none");
+        }
+        let cf1150 = document.getElementById("cf1150_c");
+        let error_cf1150 = document.getElementById("error-cf1150_c");
+        if (!cf1150.checked) {
+            error_cf1150.classList.remove("d-none");
+            event?.preventDefault();
+        } else {
+            error_cf1150.classList.add("d-none");
+        }
+        let error_MID = document.getElementById("error-MID");
+        let MID = document.getElementById("MID");
+
+        const midValue = MID.value.trim();
+        const isValidMID = /^\d{20}$/.test(midValue);
+
+        if (!isValidMID) {
+            MID.classList.add("error-box");
+            error_MID.classList.remove("d-none");
+            error_MID.innerText = "กรุณากรอก MID ให้ครบ 20 หลัก (เฉพาะตัวเลข)";
+            event?.preventDefault();
+        } else {
+            MID.classList.remove("error-box");
+            error_MID.classList.add("d-none");
+        }
+    }
+
+    function replaceTextContent(node, map) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            let textContent = node.textContent;
+            Object.keys(map).forEach((thaiText) => {
+                if (textContent.includes(thaiText)) {
+                    textContent = textContent.replaceAll(thaiText, map[thaiText]);
+                }
+            });
+            node.textContent = textContent;
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            if (node.hasAttribute("placeholder")) {
+                let placeholder = node.getAttribute("placeholder");
+                Object.keys(map).forEach((thaiText) => {
+                    if (placeholder.includes(thaiText)) {
+                        placeholder = placeholder.replaceAll(thaiText, map[thaiText]);
+                    }
+                });
+                node.setAttribute("placeholder", placeholder);
+            }
+
+            node.childNodes.forEach((child) => replaceTextContent(child, map));
+        }
+    }
+</script>
+
+<style>
+    body,
+    .form-control,
+    .form-control::placeholder {
+        font-size: 0.9rem;
+    }
+
+    body,
+    label,
+    span,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .form-control,
+    .form-control::placeholder {
+        font-family: "aktiv-grotesk-thai", "IBM Plex Sans Thai", sans-serif !important;
+    }
+
+    .form-control::placeholder {
+        color: gray;
+    }
+
+    .btn-primary {
+        background-color: #1353ec;
+    }
+
+    a {
+        color: #1353ec;
+    }
+
+    .captcha-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 50%;
+    }
+
+    #captcha {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 24px;
+        letter-spacing: 2px;
+        background-color: #e0e0e0;
+        padding: 10px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .select-dropdown,
+    .language-dropdown {
+        width: 100%;
+        padding: 10px 24px;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .select-dropdown:hover,
+    .language-dropdown:hover {
+        background-color: #e0e0e0;
+    }
+
+    .box-service {
+        background-color: #f6f8ff;
+        border-color: #1353ec;
+        border-width: 2px;
+    }
+
+    .error-box {
+        background-color: #fbf9f9;
+        border-color: #e42121;
+    }
+
+    .bggradient {
+        position: absolute;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 500px;
+        background: linear-gradient(90deg, #f1f4fe 0%, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0) 85%, #f1f4fe 100%);
+    }
+
+    .slider-container {
+        position: relative;
+        width: 100%;
+        height: 4.7vw;
+        max-height: 65px;
+        overflow: hidden;
+        margin: 4px auto;
+    }
+
+    .slider-container img {
+        height: 4.7vw;
+        max-height: 65px;
+    }
+
+    .slider-left {
+        display: flex;
+        position: absolute;
+        animation: slide-left 400s linear infinite;
+    }
+
+    @keyframes slide-left {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .slider-right {
+        display: flex;
+        position: absolute;
+        animation: slide-right 400s linear infinite;
+    }
+
+    @keyframes slide-right {
+        0% {
+            transform: translateX(-50%);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+</style>
+
+</html>

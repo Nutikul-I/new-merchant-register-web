@@ -474,3 +474,31 @@ type WithdrawAuto struct {
 	ApiVersion  string `json:"apiVersion"`
 	CurrentDate string `json:"currentDate"`
 }
+
+type NewResellerRegisterModel struct {
+	Name           string `form:"name"`           // ชื่อ-นามสกุล
+	Company        string `form:"company"`        // ชื่อบริษัท
+	Email          string `form:"email"`          // อีเมล
+	Mobile         string `form:"mobile"`         // เบอร์โทรศัพท์
+	Phone          string `form:"phone"`          // เบอร์โทรศัพท์
+	Category       string `form:"category"`       // หมวดหมู่ธุรกิจ
+	CategoryNameTH string `form:"categorynameTH"` // หมวดหมู่ธุรกิจ (TH)
+	CategoryNameEN string `form:"categorynameEN"` // หมวดหมู่ธุรกิจ (EN)
+	Website        string `form:"website"`        // เว็บไซต์ / โซเชียลมีเดีย
+	ServiceEDC     string `form:"cf1148"`         // ต้องการเครื่องรูดบัตรหรือไม่ ("1" ถ้าต้องการ)
+
+	// ข้อมูล Reseller
+	ResellerMID    string `form:"reseller-MID"`    // Reseller MID
+	ResellerEmail  string `form:"reseller-email"`  // Reseller Email
+	ResellerRemark string `form:"reseller-remark"` // Remark
+	// ต้องใช้ชื่อ field ซ้ำไม่ได้ จึงต้องเปลี่ยนชื่อ เช่น ResellerName
+	ResellerName string `form:"reseller-name"` // Reseller ชื่อ-นามสกุล
+
+	// ข้อตกลง
+	AcceptPrivacyPolicy    string `form:"cf1150"` // ยอมรับนโยบายความเป็นส่วนตัว
+	AcceptMarketingConsent string `form:"cf1154"` // ยินยอมให้ใช้ข้อมูลเพื่อการตลาด
+
+	// hidden fields
+	LeadSource string `form:"leadsource"`
+	CF1129     string `form:"cf1129"`
+}

@@ -19,6 +19,8 @@ func main() {
 	engine := html.New(viper.GetString("VIEWS_PATH"), ".html")
 	log.Debugf("vew path : %v", viper.GetString("VIEWS_PATH"))
 
+	port := "8080"
+
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
@@ -31,9 +33,9 @@ func main() {
 
 	router.SetupRoutes(app)
 
-	servicePort := viper.GetString("SERVICE_PORT")
+	// servicePort := viper.GetString("SERVICE_PORT")
 
-	log.Debugf("Service Port: %v", servicePort)
-	_ = app.Listen(":" + servicePort)
+	log.Debugf("Service Port: %v", port)
+	_ = app.Listen(":" + port)
 
 }

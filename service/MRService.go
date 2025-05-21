@@ -25,6 +25,8 @@ type MRService interface {
 	CreateNewMerchantRegister(registermodel model.NewRegisterModel) (string, error)
 	ApproveMerchantRegister(data map[string]string, ipAddress string) (string, error)
 	DenyApproveMerchantRegister(data map[string]string, ipAddress string) (string, error)
+
+	CreateNewResellerRegister(registermodel model.NewResellerRegisterModel) (string, error)
 }
 
 type mrService struct {
@@ -829,4 +831,36 @@ func (obj *mrService) DenyApproveMerchantRegister(data map[string]string, ipAddr
 	log.Info("auditLogResult", auditLogResult)
 
 	return "Deny Success", nil
+}
+
+func (obj mrService) CreateNewResellerRegister(registermodel model.NewResellerRegisterModel) (string, error) {
+	/** Define log component **/
+	_, file, _, _ := runtime.Caller(0)
+	pc, _, _, _ := runtime.Caller(0)
+	functionName := strings.Split(runtime.FuncForPC(pc).Name(), ".")[len(strings.Split(runtime.FuncForPC(pc).Name(), "."))-1]
+
+	log := log.WithFields(log.Fields{
+		"component": strings.Split(file, "/")[len(strings.Split(file, "/"))-1],
+		"funciton":  functionName,
+	})
+
+	// check input
+	if len(registermodel.Email) <= 0 || len(registermodel.Company) <= 0 || len(registermodel.Name) <= 0 || len(registermodel.Mobile) <= 0 {
+		log.Errorf("Error : Incorrect information")
+		return "Error", errors.New("Incorrect information")
+	}
+
+	// insert temp merchant
+	tempmerchant, err := obj.mrHandler.CreateNewReseller(registermodel)
+	if err != nil {
+		log.Errorf("DB Error : %#v", err)
+		return "Error", err
+	}
+
+	log.Debugf("create temp merchants ==> %#v", tempmerchant)
+
+	if tempmerchant != "COMPLETE" {
+		return "Error", errors.New("Missing invalid field")
+	}
+	return "Register Success", nil
 }
