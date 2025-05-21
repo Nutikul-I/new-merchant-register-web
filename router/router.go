@@ -52,4 +52,8 @@ func SetupRoutes(app *fiber.App) {
 
 	api.Get("/new/register-paysoshop", controllernew.NewPaySoShopRegister)
 	api.Post("/new/new-register-paysoshop", controllernew.CreateNewPaySoShopRegister)
+
+	api.Get("/new/reseller-register", controllernew.NewReseller)
+	api.Post("/new/new-reseller-register", controllernew.CreateNewResellerRegister)
+
 }

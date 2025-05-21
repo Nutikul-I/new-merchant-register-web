@@ -13,6 +13,8 @@ import (
 type DataAnalyticService interface {
 	GetToken() (message string, err error)
 	CreateCustomer(registermodel model.NewRegisterModel, utm_source, utm_medium, utm_campaign, utm_content, owner string)
+
+	CreateReseller(registermodel model.NewResellerRegisterModel, utm_source, utm_medium, utm_campaign, utm_content, owner string)
 }
 
 type dataAnalyticService struct {
@@ -173,6 +175,78 @@ func (obj *dataAnalyticService) CreateCustomer(registermodel model.NewRegisterMo
 	// 	log.Fatalf("Error formatting payload: %v", err)
 	// }
 	// log.Infof("Payload prepared:\n%s", string(payloadJSON))
+
+	log.Info("Send cutomer data to Venio")
+	obj.venioHandler.CreateCustomer(payload)
+
+}
+
+func (obj *dataAnalyticService) CreateReseller(registermodel model.NewResellerRegisterModel, utm_source, utm_medium, utm_campaign, utm_content, owner string) {
+	// Define log component
+	_, file, _, _ := runtime.Caller(0)
+	pc, _, _, _ := runtime.Caller(1) // Caller(1) gets the function caller
+	functionName := strings.Split(runtime.FuncForPC(pc).Name(), ".")[len(strings.Split(runtime.FuncForPC(pc).Name(), "."))-1]
+
+	log := log.WithFields(log.Fields{
+		"component": strings.Split(file, "/")[len(strings.Split(file, "/"))-1],
+		"function":  functionName,
+	})
+
+	log.Infof("Start sending customer data to Venio")
+
+	var interestsName []string
+	var categoryNameEN string
+	var owners []string
+
+	Catagory, err := obj.newService.GetCatagory()
+	if err != nil {
+		log.Error(err)
+	}
+
+	var filtered []model.Category
+	for _, cat := range Catagory {
+		if cat.NameTH != "--" && cat.NameTH != "ปืน" && cat.NameTH != "อื่นๆ" {
+			filtered = append(filtered, cat)
+		}
+	}
+
+	var payload = model.CustomerRequest{
+		CustomerName:   registermodel.Name,
+		CustomerState:  1,
+		CustomerStatus: 0,
+		CustomerType:   1,
+		SourceName:     "Z-" + categoryNameEN,
+		LeadStatus:     1,
+		InterestsName:  interestsName,
+		CustomFields: []model.CustomField{
+			{
+				CustomFieldName:  "Reseller name",
+				CustomFieldValue: []string{registermodel.ResellerName},
+			},
+			{
+				CustomFieldName:  "Reseller MID",
+				CustomFieldValue: []string{registermodel.ResellerMID},
+			},
+			{
+				CustomFieldName:  "Reseller email",
+				CustomFieldValue: []string{registermodel.ResellerEmail},
+			},
+			{
+				CustomFieldName:  "Reseller remark",
+				CustomFieldValue: []string{registermodel.ResellerRemark},
+			},
+		},
+		Contacts: []model.Contact{
+			{
+				ContactName:   registermodel.Name,
+				ContactStatus: true,
+				ContactPhone:  registermodel.Phone,
+				ContactMobile: registermodel.Mobile,
+				ContactEmail:  registermodel.Email,
+			},
+		},
+		Owners: owners,
+	}
 
 	log.Info("Send cutomer data to Venio")
 	obj.venioHandler.CreateCustomer(payload)

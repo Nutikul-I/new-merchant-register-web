@@ -24,6 +24,9 @@ type NewController interface {
 
 	GetNewMerchantRegister(c *fiber.Ctx) error
 	CreateNewMerchantRegister(c *fiber.Ctx) error
+
+	NewReseller(c *fiber.Ctx) error
+	CreateNewResellerRegister(c *fiber.Ctx) error
 }
 
 type newController struct {
@@ -361,4 +364,131 @@ func validateTurnstileToken(secretKey, token string) (*model.TurnstileResponse, 
 	}
 
 	return &tsResponse, nil
+}
+
+func (obj *newController) NewReseller(c *fiber.Ctx) error {
+	/** Define log component **/
+	_, file, _, _ := runtime.Caller(0)
+	pc, _, _, _ := runtime.Caller(0)
+	functionName := strings.Split(runtime.FuncForPC(pc).Name(), ".")[len(strings.Split(runtime.FuncForPC(pc).Name(), "."))-1]
+
+	log := log.WithFields(log.Fields{
+		"component": strings.Split(file, "/")[len(strings.Split(file, "/"))-1],
+		"funciton":  functionName,
+	})
+
+	fullURL := c.OriginalURL()
+	log.Infof("Full URL: %s", fullURL)
+
+	utm_source := c.Query("utm_source")
+	utm_medium := c.Query("utm_medium")
+	utm_campaign := c.Query("utm_campaign")
+	utm_content := c.Query("utm_content")
+	business_category := c.Query("business_category", "")
+
+	//Catagory
+	Catagory, err := obj.newService.GetCatagory()
+	if err != nil {
+		log.Error(err)
+	}
+	var filtered []model.Category
+	for _, cat := range Catagory {
+		if cat.NameTH != "--" && cat.NameTH != "ปืน" && cat.NameTH != "อื่นๆ" {
+			filtered = append(filtered, cat)
+		}
+	}
+
+	//SubCatagory
+	SubCatagory, err := obj.newService.GetSubCatagory()
+	if err != nil {
+		log.Error(err)
+	}
+
+	lang := c.Query("lang", "TH")
+
+	if lang == "TH" {
+		sort.Slice(filtered, func(i, j int) bool {
+			return filtered[i].NameTH < filtered[j].NameTH
+		})
+	} else {
+		sort.Slice(filtered, func(i, j int) bool {
+			return filtered[i].NameEN < filtered[j].NameEN
+		})
+	}
+
+	return c.Render("new-reseller-register", fiber.Map{
+		"Catagory":         filtered,
+		"SubCatagory":      SubCatagory,
+		"UtmSource":        utm_source,
+		"UtmMedium":        utm_medium,
+		"UtmCampaign":      utm_campaign,
+		"UtmContent":       utm_content,
+		"Lang":             lang,
+		"BusinessCategory": business_category,
+	})
+}
+
+func (obj newController) CreateNewResellerRegister(c *fiber.Ctx) error {
+	/** Define log component **/
+	_, file, _, _ := runtime.Caller(0)
+	pc, _, _, _ := runtime.Caller(0)
+	functionName := strings.Split(runtime.FuncForPC(pc).Name(), ".")[len(strings.Split(runtime.FuncForPC(pc).Name(), "."))-1]
+
+	log := log.WithFields(log.Fields{
+		"component": strings.Split(file, "/")[len(strings.Split(file, "/"))-1],
+		"function":  functionName,
+	})
+
+	enableCaptcha := viper.GetBool("SERVICE_CAPTCHA_ENABLED")
+
+	if enableCaptcha {
+		// Parse Turnstile token
+		token := c.FormValue("cf-turnstile-response")
+		if token == "" {
+			log.Error("Turnstile token is missing")
+			return c.Status(fiber.StatusInternalServerError).Render("new-register-false", fiber.Map{"Error": "4101"})
+		}
+		secretKey := viper.GetString("SECREAT_KEY_CAPTCHA")
+
+		tsResponse, err := validateTurnstileToken(secretKey, token)
+		if err != nil || !tsResponse.Success {
+			log.Errorf("Turnstile validation failed: %v", err)
+			return c.Status(fiber.StatusInternalServerError).Render("new-register-false", fiber.Map{"Error": "4101"})
+		}
+	}
+
+	// Parse request body
+	var body model.NewResellerRegisterModel
+	if err := c.BodyParser(&body); err != nil {
+		log.Errorf("Failed to parse request body: %v", err)
+		return c.Status(fiber.StatusInternalServerError).Render("new-register-false", fiber.Map{"Error": "4101"})
+	}
+
+	// Proceed with merchant registration
+	result, err := obj.newService.CreateNewResellerRegister(body)
+	if err != nil {
+		log.Errorf("Error creating merchant register: %v", err)
+		return c.Status(fiber.StatusInternalServerError).Render("new-register-false", fiber.Map{"Error": "5101"})
+	}
+
+	utm_source := c.Query("utm_source")
+	utm_medium := c.Query("utm_medium")
+	utm_campaign := c.Query("utm_campaign")
+	utm_content := c.Query("utm_content")
+
+	message, err := obj.dataAnalyticService.GetToken()
+	if err != nil {
+		log.Errorf("Error fetching Venio token: %v", err)
+	}
+	log.Infof("Token message: %s", message)
+
+	// Create customer in Venio
+	obj.dataAnalyticService.CreateReseller(body, utm_source, utm_medium, utm_campaign, utm_content, "")
+
+	// Uncomment and use this if the service works as expected
+	if result == "Register Success" {
+		return c.Status(fiber.StatusInternalServerError).Render("new-register-thankyou", fiber.Map{})
+	}
+
+	return c.Status(fiber.StatusInternalServerError).Render("new-register-false", fiber.Map{"Error": "4101"})
 }
