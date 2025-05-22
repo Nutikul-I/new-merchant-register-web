@@ -46,7 +46,7 @@
 
 <body class="position-relative">
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9X4LFG" height="0" width="0"
+    <noscript><iframe src="https//www.googletagmanager.com/ns.html?id=GTM-T9X4LFG" height="0" width="0"
             style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -112,8 +112,8 @@
                                     <div class="col-md-6">
                                         <label for="phone"
                                             class="form-label position-absolute ps-3 pt-2">เบอร์โทรศัพท์</label>
-                                        <input type="tel" class="form-control pt-4 ps-3" style="height: 60px"
-                                            id="phone" name="phone" placeholder="0123456789" maxlength="10" />
+                                        <input type="tel" class="form-control pt-4 ps-3" style="height: 60px" id="phone"
+                                            name="phone" placeholder="0123456789" maxlength="10" />
                                         <small class="px-1 text-danger d-none"
                                             id="error-phone">กรุณาระบุเบอร์โทรศัพท์</small>
                                     </div>
@@ -147,10 +147,15 @@
                                         โซเชียลมีเดียธุรกิจ</label>
                                     <input type="text" class="form-control pt-4 ps-3"
                                         style="height: 60px; padding-right: 90px" id="website" name="website"
-                                        placeholder="ระบุเว็บไซต์ / โซเชียลมีเดียธุรกิจ" maxlength="100" required />
+                                        placeholder="ระบุเว็บไซต์ / โซเชียลมีเดียธุรกิจ" maxlength="100" />
+                                    <small class="px-1 text-danger d-none" id="error-website">กรุณาระบุเว็บไซต์ /
+                                        โซเชียลมีเดียธุรกิจ</small>
                                     <div class="card rounded-2 position-absolute px-2 text-secondary"
-                                        style="top: 20px; right: 16px"><small>บังคับใส่</small></div>
+                                        style="top: 20px; right: 16px">
+                                        <small>บังคับใส่</small>
+                                    </div>
                                 </div>
+
 
                                 <!-- Service -->
                                 <label class="my-4 form-control d-flex align-items-center p-2 box-service"
@@ -178,22 +183,24 @@
                                     <label for="resellerName" class="form-label position-absolute ps-3 pt-2">Reseller
                                         name</label>
                                     <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
-                                        id="resellerName" name="resellerName" placeholder="ชื่อ-นามสกุล" maxlength="100"
-                                        required />
-                                    <small class="px-1 text-danger d-none" id="error-name">ชื่อ-นามสกุล</small>
+                                        id="resellerName" name="resellerName" placeholder="ชื่อ-นามสกุล"
+                                        maxlength="100" />
+                                    <small class="px-1 text-danger d-none"
+                                        id="error-resellerName">กรุณากรอกชื่อ-นามสกุล</small>
                                 </div>
 
 
 
                                 <!-- Reseller MID -->
                                 <div class="mb-2 position-relative">
-                                    <label for="resellerMID" class="form-label position-absolute ps-3 pt-2">Reseller
-                                        MID</label>
-                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
-                                        id="resellerMID" name="resellerMID" placeholder="01234567890123456789"
-                                        maxlength="100" required />
-                                    <small class="px-1 text-danger d-none" id="error-MID">Reseller MID</small>
+                                    <label for="MID" class="form-label position-absolute ps-3 pt-2">Reseller MID</label>
+                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px" id="MID"
+                                        name="resellerMID" placeholder="01234567890123456789" maxlength="20" />
+                                    <small class="px-1 text-danger d-none" id="error-MID">กรุณากรอก MID ให้ครบ 20 หลัก
+                                        (เฉพาะตัวเลข)</small>
                                 </div>
+
+
 
                                 <!-- Reseller Email -->
                                 <div class="mb-2 position-relative">
@@ -201,18 +208,22 @@
                                         Email</label>
                                     <input type="email" class="form-control pt-4 ps-3" style="height: 60px"
                                         id="resellerEmail" name="resellerEmail" placeholder="youremail@example.com"
-                                        maxlength="100" required />
-                                    <small class="px-1 text-danger d-none" id="error-email">กรุณากรอกอีเมล</small>
+                                        maxlength="100" />
+                                    <small class="px-1 text-danger d-none"
+                                        id="error-resellerEmail">กรุณากรอกอีเมล</small>
                                 </div>
+
 
                                 <!-- Reseller Remark (Optional) -->
                                 <div class="mb-2 position-relative">
                                     <label for="resellerRemark" class="form-label position-absolute ps-3 pt-2">Remark
                                         (ไม่บังคับ)</label>
-                                    <input type="text" class="form-control pt-4 ps-3" style="height: 60px"
-                                        id="resellerRemark" name="resellerRemark" placeholder="" maxlength="255" />
+                                    <textarea class="form-control pt-4 ps-3" style="height: 120px; resize: vertical;"
+                                        id="resellerRemark" name="resellerRemark" maxlength="255"
+                                        placeholder=""></textarea>
                                     <small class="px-1 text-danger d-none" id="error-remark">กรุณากรอกหมายเหตุ</small>
                                 </div>
+
                             </div>
                             <!-- End ข้อมูล Reseller -->
                             <div class="mb-2 ps-2">
@@ -245,62 +256,29 @@
             </div>
             <div class="position-absolute" style="left: 16px; bottom: 16px;">@ Pay Solutions</div>
         </div>
-        <div class="col-12 col-lg-6 col-xxl-5 d-none d-lg-block min-vh-100s">
-            <div class="d-flex position-relative" style="height:100%">
+        <div class="col-12 col-lg-6 col-xxl-5 d-none d-lg-block min-vh-100">
+            <div class="d-flex position-relative" style="height: 100%;">
                 <div class="p-5 rounded-4 position-absolute d-flex align-items-center justify-content-center"
-                    style="top: 16px; bottom: 16px; left: 16px; right: 16px; background-color: #f1f4fe">
-                    <div class="text-center">
-                        <div class="position-relative overflow-hidden mb-4" style="width: 75%; margin: 0 auto">
-                            <div class="slider-container">
-                                <div class="slider-left">
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo1.png"
-                                        class="mx-auto mb-4" />
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo1.png"
-                                        class="mx-auto mb-4" />
-                                </div>
-                            </div>
-                            <div class="slider-container">
-                                <div class="slider-right">
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo2.png"
-                                        class="mx-auto mb-4" />
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo2.png"
-                                        class="mx-auto mb-4" />
-                                </div>
-                            </div>
-                            <div class="slider-container">
-                                <div class="slider-left">
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo3.png"
-                                        class="mx-auto mb-4" />
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo3.png"
-                                        class="mx-auto mb-4" />
-                                </div>
-                            </div>
-                            <div class="slider-container">
-                                <div class="slider-right">
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo4.png"
-                                        class="mx-auto mb-4" />
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo4.png"
-                                        class="mx-auto mb-4" />
-                                </div>
-                            </div>
-                            <div class="slider-container">
-                                <div class="slider-left">
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo5.png"
-                                        class="mx-auto mb-4" />
-                                    <img alt="checked" src="https://cdn.paysolutions.io/assets/images/logo5.png"
-                                        class="mx-auto mb-4" />
-                                </div>
-                            </div>
-                            <div class="bggradient"></div>
+                    style="top: 16px; bottom: 16px; left: 16px; right: 16px; background: linear-gradient(135deg, #e6ecff, #f1f4fe); box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+                    <div class="text-center" style="max-width: 500px; width: 100%;">
+                        <div class="mb-4">
+                            <img alt="Banner Image"
+                                src="https://img2.pic.in.th/pic/1ad9e6ad-b5f0-42f8-831f-16e9fe372b39.png"
+                                style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
                         </div>
-                        <h3 class="fw-semibold mb-4">รองรับทุกการจ่าย ครบ จบในที่เดียว</h3>
-                        <label style="font-size: 18px; color: #475467">ระบบรับชำระเงินที่เข้าใจผู้ประกอบการ
-                            ไม่พลาดทุกยอดขาย<br />ครอบคลุมทั้งออนไลน์และออฟไลน์
-                            พร้อมเคียงข้างทุกธุรกิจให้เติบโตไปด้วยกัน</label>
+                        <h3 class="fw-semibold mb-3" style="font-size: 24px; color: #1d3557;">
+                            รองรับทุกการจ่าย ครบ จบในที่เดียว
+                        </h3>
+                        <p style="font-size: 16px; color: #475467; line-height: 1.6;">
+                            ระบบรับชำระเงินที่เข้าใจผู้ประกอบการ<br />
+                            ไม่พลาดทุกยอดขาย ครอบคลุมทั้งออนไลน์และออฟไลน์<br />
+                            พร้อมเคียงข้างทุกธุรกิจให้เติบโตไปด้วยกัน
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -511,6 +489,59 @@
             category.classList.remove("error-box");
             error_category.classList.add("d-none");
         }
+        let website = document.getElementById("website");
+        let error_website = document.getElementById("error-website");
+        if (!website.value.trim()) {
+            website.classList.add("error-box");
+            error_website.textContent = language === "TH" ? "กรุณาระบุเว็บไซต์" : "Please enter website";
+            error_website.classList.remove("d-none");
+            event?.preventDefault();
+        } else {
+            website.classList.remove("error-box");
+            error_website.classList.add("d-none");
+        }
+        let resellerName = document.getElementById("resellerName");
+        let error_resellerName = document.getElementById("error-resellerName");
+        if (!resellerName.value.trim()) {
+            resellerName.classList.add("error-box");
+            error_resellerName.classList.remove("d-none");
+            error_resellerName.innerText = language === "TH" ? "กรุณากรอกชื่อ Reseller" : "Please enter reseller name";
+            event?.preventDefault();
+        } else {
+            resellerName.classList.remove("error-box");
+            error_resellerName.classList.add("d-none");
+        }
+
+        let resellerEmail = document.getElementById("resellerEmail");
+        let error_resellerEmail = document.getElementById("error-resellerEmail");
+        if (!resellerEmail.value.trim()) {
+            resellerEmail.classList.add("error-box");
+            error_resellerEmail.textContent = language === "TH" ? "กรุณากรอกอีเมล" : "Please enter email";
+            error_resellerEmail.classList.remove("d-none");
+            event?.preventDefault();
+        } else if (!emailRegex.test(resellerEmail.value.trim())) {
+            resellerEmail.classList.add("error-box");
+            error_resellerEmail.textContent = language === "TH" ? "รูปแบบอีเมลไม่ถูกต้อง" : "Email format is invalid";
+            error_resellerEmail.classList.remove("d-none");
+            event?.preventDefault();
+        } else {
+            resellerEmail.classList.remove("error-box");
+            error_resellerEmail.classList.add("d-none");
+        }
+
+        let MID = document.getElementById("MID");
+        let error_MID = document.getElementById("error-MID");
+        const midValue = MID.value.trim();
+        const isValidMID = /^\d{20}$/.test(midValue);
+        if (!isValidMID) {
+            MID.classList.add("error-box");
+            error_MID.classList.remove("d-none");
+            error_MID.innerText = language === "TH" ? "กรุณากรอก MID ให้ครบ 20 หลัก (เฉพาะตัวเลข)" : "Please enter 20 digits MID (numbers only)";
+            event?.preventDefault();
+        } else {
+            MID.classList.remove("error-box");
+            error_MID.classList.add("d-none");
+        }
         let cf1150 = document.getElementById("cf1150_c");
         let error_cf1150 = document.getElementById("error-cf1150_c");
         if (!cf1150.checked) {
@@ -519,21 +550,7 @@
         } else {
             error_cf1150.classList.add("d-none");
         }
-        let error_MID = document.getElementById("error-MID");
-        let MID = document.getElementById("MID");
 
-        const midValue = MID.value.trim();
-        const isValidMID = /^\d{20}$/.test(midValue);
-
-        if (!isValidMID) {
-            MID.classList.add("error-box");
-            error_MID.classList.remove("d-none");
-            error_MID.innerText = "กรุณากรอก MID ให้ครบ 20 หลัก (เฉพาะตัวเลข)";
-            event?.preventDefault();
-        } else {
-            MID.classList.remove("error-box");
-            error_MID.classList.add("d-none");
-        }
     }
 
     function replaceTextContent(node, map) {
